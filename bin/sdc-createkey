@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+require 'sdc_helper'
+
+key = {}
+
+name = ARGV[0]
+if name
+  key[:name] = name
+else
+  puts 'name is empty.'
+  exit 1
+end
+
+key_file = ARGV[1]
+if key_file
+  begin
+    key[:key] = File.read(key_file)
+  rescue => e
+    puts e
+    exit 1
+  end
+else
+  puts 'key file is empty.'
+  exit 1
+end
+
+pp client.keys.create key

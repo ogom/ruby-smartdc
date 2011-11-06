@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+require 'pathname'
+require 'sdc_helper'
+
+FIXTURES = File.join(File.dirname(__FILE__), 'fixtures')
+CONFIG = File.join(FIXTURES, 'config.json')
+config = {}
+
+config[:url] = ARGV[0] if ARGV[0]
+unless config[:url]
+  puts 'url is empty.'
+  exit 1
+end
+
+print 'version:[~6.5] '
+config[:version] = STDIN.gets.chomp.to_s
+if config[:version].size == 0
+  config[:version] = '~6.5'
+end
+
+print 'Username (login): '
+config[:username] = STDIN.gets.chomp.to_s
+if config[:username].size == 0
+  puts 'Username is empty.'
+  exit 1
+end
+
+print 'Password: '
+config[:password] = STDIN.gets.chomp.to_s
+if config[:password].size == 0
+  puts 'Password is empty.'
+  exit 1
+end
+
+Pathname.new(FIXTURES).mkpath unless File.exist?(FIXTURES)
+File.open(CONFIG, 'w') do |file|
+  file.write MultiJson.encode(config)
+end
+
+begin
+  datacenters = client.datacenters.find
+  if client.datacenters.find.first[1] == config[:url]
+    puts 'Successful configuration.'
+  else
+    puts 'Failed Configuration.'
+  end
+rescue
+  puts 'Failed Configuration.'
+end
