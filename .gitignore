@@ -23,6 +23,9 @@ pkg
 # Gem
 Gemfile.lock
 
+# Rspec
+.rspec
+
 # Config
 spec/fixtures/config.json
 bin/fixtures/*

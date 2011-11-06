@@ -19,7 +19,6 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
-    ".rspec",
     "Gemfile",
     "LICENSE.md",
     "README.md",
@@ -44,8 +43,6 @@ Gem::Specification.new do |s|
     "bin/sdc-startmachine",
     "bin/sdc-stopmachine",
     "bin/sdc_helper.rb",
-    "hoge",
-    "hoge.pub",
     "lib/faraday/response/mashify.rb",
     "lib/faraday/response/parse_json.rb",
     "lib/smartdc.rb",
