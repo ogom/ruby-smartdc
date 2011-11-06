@@ -5,14 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = "smartdc"
-  s.version = "0.1.0"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ogom"]
   s.date = "2011-11-06"
   s.description = "smartdc is SmartDataCenter Public API."
   s.email = "ogom@hotmail.co.jp"
-  s.executables = ["sdc_helper.rb", "sdc-createkey", "sdc-deletekey", "sdc-getdatacenter", "sdc-getdataset", "sdc-getkey", "sdc-getmachine", "sdc-getpackage", "sdc-listdatacenters", "sdc-listdatasets", "sdc-listkeys", "sdc-listmachines", "sdc-listpackages", "sdc-setup"]
+  s.executables = ["sdc-createkey", "sdc-createmachine", "sdc-deletekey", "sdc-deletemachine", "sdc-getdatacenter", "sdc-getdataset", "sdc-getkey", "sdc-getmachine", "sdc-getpackage", "sdc-listdatacenters", "sdc-listdatasets", "sdc-listkeys", "sdc-listmachines", "sdc-listpackages", "sdc-rebootmachine", "sdc-resizemachine", "sdc-setup", "sdc-startmachine", "sdc-stopmachine"]
   s.extra_rdoc_files = [
     "LICENSE.md",
     "README.md"
@@ -26,7 +26,9 @@ Gem::Specification.new do |s|
     "VERSION",
     "bin/helper/sdc_helper.rb",
     "bin/sdc-createkey",
+    "bin/sdc-createmachine",
     "bin/sdc-deletekey",
+    "bin/sdc-deletemachine",
     "bin/sdc-getdatacenter",
     "bin/sdc-getdataset",
     "bin/sdc-getkey",
@@ -37,7 +39,11 @@ Gem::Specification.new do |s|
     "bin/sdc-listkeys",
     "bin/sdc-listmachines",
     "bin/sdc-listpackages",
+    "bin/sdc-rebootmachine",
+    "bin/sdc-resizemachine",
     "bin/sdc-setup",
+    "bin/sdc-startmachine",
+    "bin/sdc-stopmachine",
     "lib/faraday/response/mashify.rb",
     "lib/faraday/response/parse_json.rb",
     "lib/smartdc.rb",
@@ -78,6 +84,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
+      s.add_development_dependency(%q<uuid>, ["~> 2.3.4"])
     else
       s.add_dependency(%q<faraday>, ["~> 0.7.5"])
       s.add_dependency(%q<hashie>, ["~> 1.2.0"])
@@ -87,6 +94,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
       s.add_dependency(%q<rcov>, [">= 0"])
+      s.add_dependency(%q<uuid>, ["~> 2.3.4"])
     end
   else
     s.add_dependency(%q<faraday>, ["~> 0.7.5"])
@@ -97,6 +105,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
     s.add_dependency(%q<rcov>, [">= 0"])
+    s.add_dependency(%q<uuid>, ["~> 2.3.4"])
   end
 end
 
