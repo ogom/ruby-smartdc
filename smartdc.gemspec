@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.date = "2011-11-06"
   s.description = "smartdc is SmartDataCenter Public API."
   s.email = "ogom@hotmail.co.jp"
-  s.executables = ["sdc-createkey", "sdc-createmachine", "sdc-deletekey", "sdc-deletemachine", "sdc-getdatacenter", "sdc-getdataset", "sdc-getkey", "sdc-getmachine", "sdc-getpackage", "sdc-listdatacenters", "sdc-listdatasets", "sdc-listkeys", "sdc-listmachines", "sdc-listpackages", "sdc-rebootmachine", "sdc-resizemachine", "sdc-setup", "sdc-startmachine", "sdc-stopmachine"]
+  s.executables = ["sdc-createkey", "sdc-createmachine", "sdc-deletekey", "sdc-deletemachine", "sdc-getdatacenter", "sdc-getdataset", "sdc-getkey", "sdc-getmachine", "sdc-getpackage", "sdc-listdatacenters", "sdc-listdatasets", "sdc-listkeys", "sdc-listmachines", "sdc-listpackages", "sdc-rebootmachine", "sdc-resizemachine", "sdc-setup", "sdc-startmachine", "sdc-stopmachine", "sdc_helper.rb"]
   s.extra_rdoc_files = [
     "LICENSE.md",
     "README.md"
