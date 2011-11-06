@@ -5,14 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = "smartdc"
-  s.version = "0.0.1"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ogom"]
   s.date = "2011-11-06"
   s.description = "smartdc is SmartDataCenter Public API."
   s.email = "ogom@hotmail.co.jp"
-  s.executables = ["sdc-createkey", "sdc-createkey.rb", "sdc-deletekey", "sdc-deletekey.rb", "sdc-getdatacenter", "sdc-getdatacenter.rb", "sdc-getdataset", "sdc-getkey", "sdc-getmachine", "sdc-getpackage", "sdc-listdatacenters", "sdc-listdatacenters.rb", "sdc-listdatasets", "sdc-listkeys", "sdc-listkeys.rb", "sdc-listmachines", "sdc-listmachines.rb", "sdc-listpackages", "sdc-setup", "sdc-setup.rb", "sdc_helper.rb"]
+  s.executables = ["sdc-createkey", "sdc-deletekey", "sdc-getdatacenter", "sdc-getdataset", "sdc-getkey", "sdc-getmachine", "sdc-getpackage", "sdc-listdatacenters", "sdc-listdatasets", "sdc-listkeys", "sdc-listmachines", "sdc-listpackages", "sdc-setup", "sdc_helper.rb"]
   s.extra_rdoc_files = [
     "LICENSE.md",
     "README.md"
@@ -23,7 +23,6 @@ Gem::Specification.new do |s|
     "Gemfile",
     "LICENSE.md",
     "README.md",
-    "Rakefile",
     "VERSION",
     "bin/sdc-createkey",
     "bin/sdc-deletekey",
@@ -49,7 +48,6 @@ Gem::Specification.new do |s|
     "lib/smartdc/api/packages.rb",
     "lib/smartdc/client.rb",
     "lib/smartdc/request.rb",
-    "ruby-smartdc.gemspec",
     "smartdc.gemspec",
     "spec/fixtures/key.json",
     "spec/smartdc/api/datacenters_spec.rb",
