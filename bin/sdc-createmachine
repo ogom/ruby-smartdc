@@ -1,0 +1,37 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'helper'))
+require 'sdc_helper'
+require "optparse"
+
+machine = {}
+OptionParser.new do |option|
+  option.on('-n', '--name NAME', 'friendly name for this machine.') {|v| machine[:name] = v }
+  option.on('-e', '--dataset URN', 'dataset URN.') {|v| machine[:dataset] = v }
+  option.on('-p', '--package NAME', 'Name of the package to use on provisioning.') {|v| machine[:package] = v }
+  option.on('-h','--help') do
+    puts option
+    puts
+    print 'Datasets(run):'
+    fixture('datasets').each do |dataset|
+      print ' ' + dataset['urn']
+    end
+    puts
+    print 'Packages(name):'
+    fixture('packages').each do |packages|
+      print ' ' + packages['name']
+    end
+    puts "\n\n"
+    exit
+  end
+
+  begin
+    option.parse!(ARGV)
+  rescue
+    puts "Invalid option."
+    puts option
+    exit
+  end
+end
+
+pp client.machines.create machine

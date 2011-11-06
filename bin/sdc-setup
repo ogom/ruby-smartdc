@@ -1,11 +1,13 @@
 #!/usr/bin/env ruby
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'helper'))
-require 'pathname'
 require 'sdc_helper'
+require 'pathname'
 
 FIXTURES = File.join(File.dirname(__FILE__), 'fixtures')
 CONFIG = File.join(FIXTURES, 'config.json')
+DATASETS = File.join(FIXTURES, 'datasets.json')
+PACKAGES = File.join(FIXTURES, 'packages.json')
 config = {}
 
 config[:url] = ARGV[0] if ARGV[0]
@@ -43,9 +45,17 @@ begin
   datacenters = client.datacenters.find
   if client.datacenters.find.first[1] == config[:url]
     puts 'Successful configuration.'
+
+    File.open(DATASETS, 'w') do |file|
+      file.write MultiJson.encode(client.datasets.find)
+    end
+
+    File.open(PACKAGES, 'w') do |file|
+      file.write MultiJson.encode(client.packages.find)
+    end
   else
     puts 'Failed Configuration.'
   end
 rescue
-  puts 'Failed Configuration.'
+  puts 'Failed Setup.'
 end

@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'helper'))
+require 'sdc_helper'
+require "optparse"
+
+machine = {}
+OptionParser.new do |option|
+  option.on('-p', '--package NAME', 'Name of the package to use on provisioning.') {|v| machine[:package] = v }
+  option.on('-h','--help') do
+    puts option
+    puts
+    print 'Packages(name):'
+    fixture('packages').each do |packages|
+      print ' ' + packages['name']
+    end
+    puts "\n\n"
+    exit
+  end
+
+  begin
+    option.parse!(ARGV)
+  rescue
+    puts "Invalid option."
+    puts option
+    exit
+  end
+end
+
+id = ARGV[0] if ARGV[0]
+unless id
+  puts 'id is empty.'
+  exit 1
+end
+
+pp client.machines.resize id, machine

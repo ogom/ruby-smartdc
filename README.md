@@ -1,11 +1,21 @@
 # smartdc
 
-SmartDataCenter CloudApi client by ruby.
+ruby-smartdc is a ruby client library for interacting with the Joyent SmartDataCenter CloudApi. 
 
-smartdc is SmartDataCenter Public API.
+
+## Installation
+
+  gem install smartdc
 
 
 ## Usage
+
+### CLI
+
+  sdc-setup
+
+
+### Program
 
   require 'smartdc'
 
