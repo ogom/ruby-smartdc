@@ -12,7 +12,7 @@ OptionParser.new do |option|
   option.on('-h','--help') do
     puts option
     puts
-    print 'Datasets(run):'
+    print 'Datasets(urn):'
     fixture('datasets').each do |dataset|
       print ' ' + dataset['urn']
     end
