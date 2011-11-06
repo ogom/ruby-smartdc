@@ -12,7 +12,9 @@ ruby-smartdc is a ruby client library for interacting with the Joyent SmartDataC
 
 ### CLI
 
-    [sdc-setup](http://www.slideshare.net/ogom_/smartdc-by-ruby-10047222)
+    sdc-setup
+
+[Slid](http://www.slideshare.net/ogom_/smartdc-by-ruby-10047222) the command.
 
 
 ### Program
