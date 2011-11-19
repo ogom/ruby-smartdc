@@ -19,7 +19,16 @@ describe "Smartdc::Api::Machines" do
 
   describe ".read" do
     it "should return a machine" do
-      client.machines.read(@machine.id).name.should eq @name
+      client.machines(@machine.id).read.name.should eq @name
+    end
+
+    it "should return state at running when success" do
+      machine = client.machines(@machine.id)
+      8.times do |i|
+        break if machine.read.state == 'running'
+        sleep i
+      end
+      machine.read.state.should eq 'running'
     end
   end
 
@@ -29,10 +38,59 @@ describe "Smartdc::Api::Machines" do
     end
   end
 
+  describe ".stop" do
+    it "should return true when success" do
+      client.machines(@machine.id).stop.should be_true
+    end
+
+    it "should return state at stopped when success" do
+      machine = client.machines(@machine.id)
+      8.times do |i|
+        break if machine.read.state == 'stopped'
+        sleep i
+      end
+      machine.read.state.should eq 'stopped'
+    end
+  end
+
+  describe ".start" do
+    it "should return true when success" do
+      client.machines(@machine.id).start.should be_true
+    end
+
+    it "should return state at running when success" do
+      machine = client.machines(@machine.id)
+      8.times do |i|
+        break if machine.read.state == 'running'
+        sleep i
+      end
+      machine.read.state.should eq 'running'
+    end
+  end
+
+  describe ".reboot" do
+    it "should return true when success" do
+      client.machines(@machine.id).reboot.should be_true
+    end
+
+    it "should return state at running when success" do
+      machine = client.machines(@machine.id)
+      8.times do |i|
+        break if machine.read.state == 'running'
+        sleep i
+      end
+      machine.read.state.should eq 'running'
+    end
+  end
+
   describe ".delete" do
     it "should return true when success" do
-      client.machines.stop @machine.id
-      client.machines.delete(@machine.id).should be_true
+      machine = client.machines(@machine.id)
+      8.times do |i|
+        break if machine.read.state == 'stopped'
+        sleep i
+      end
+      client.machines(@machine.id).delete.should be_true
     end
   end
 end

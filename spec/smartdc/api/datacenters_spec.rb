@@ -10,7 +10,7 @@ describe "Smartdc::Api::Datacenters" do
   describe ".read" do
     it "should return a datacenter" do
       datacenters = client.datacenters.find
-      client.datacenters.read(datacenters.first[0])[:message].should match(/#{datacenters.first[0]}/)
+      client.datacenters(datacenters.first[0]).read[:message].should match(/#{datacenters.first[0]}/)
     end
   end
 end

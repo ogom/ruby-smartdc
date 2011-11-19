@@ -6,14 +6,9 @@ require 'cli_helper'
 options = {}
 OptionParser.new do |opts|
   opts.banner = "Usage: #{File.basename($0)} machine.id [options]"
-  opts.on('-p', '--package NAME', 'Name of the package to use on provisioning.') {|v| options[:package] = v }
-  opts.on('-h','--help') do
+  opts.on('-k', '--key NAME', 'Key Tag.') {|v| options[:key] = v }
+  opts.on_tail('-h','--help') do
     puts opts
-    print 'Packages(name):'
-    fixture('packages').each do |packages|
-      print ' ' + packages['name']
-    end
-    puts
     exit
   end
 
@@ -26,7 +21,7 @@ OptionParser.new do |opts|
 end
 
 begin
-  pp client.machines(ARGV[0]).resize options
+  pp client.machines(ARGV[0]).tags(options[:key]).read 
 rescue => e
   puts e
 end

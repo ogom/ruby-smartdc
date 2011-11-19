@@ -2,12 +2,15 @@ module Smartdc
   module Api
     class Datacenters
       attr_reader :request
+      attr_reader :id
 
-      def initialize(request)
+      def initialize(request, id=nil)
         @request = request
+        @id = id
       end
 
-      def read(id)  
+      def read
+        raise ArgumentError unless id
         request.get('my/datacenters/' + id.to_s)
       end
 

@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
 
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'sdc_helper'
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+require 'cli_helper'
 
-pp client.machines.find
+begin
+  pp client.machines.find
+rescue => e
+  puts e
+end

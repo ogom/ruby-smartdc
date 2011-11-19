@@ -31,7 +31,25 @@ ruby-smartdc is a ruby client library for interacting with the Joyent SmartDataC
     client = Smartdc.new(config)
     machines = client.machines.find
     machines.each do |machine|
-      puts machine.id
+      puts "machines   id: #{machine.id}, state: #{machine.state}"
+      machine = client.machines(machine.id)
+      
+      puts 'Stop the machine.'
+      machine.stop
+      8.times do |i|
+        puts "machine(#{i}) id: #{machine.read.id}, state: #{machine.read.state}"
+        break if machine.read.state == 'stopped'
+        sleep i
+      end
+      
+      puts 'Start the machine.'
+      machine.start
+      8.times do |i|
+        puts "machine(#{i}) id: #{machine.read.id}, state: #{machine.read.state}"
+        break if machine.read.state == 'running'
+        sleep i
+      end
+      puts
     end
 
 

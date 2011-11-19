@@ -10,27 +10,27 @@ module Smartdc
   	attr_reader :request
 
   	def initialize(options={})
-      @request = Smartdc::Request.new(options)
+      @request ||= Smartdc::Request.new(options)
     end
 
-    def keys
-      @keys ||= Smartdc::Api::Keys.new(request)
+    def keys(id=nil)
+      Smartdc::Api::Keys.new(request, id)
     end
 
-    def datacenters
-      @datacenters ||= Smartdc::Api::Datacenters.new(request)
+    def datacenters(id=nil)
+      Smartdc::Api::Datacenters.new(request, id)
     end
 
-    def datasets
-      @datasets ||= Smartdc::Api::Datasets.new(request)
+    def datasets(id=nil)
+      Smartdc::Api::Datasets.new(request, id)
     end
 
-    def packages
-      @packages ||= Smartdc::Api::Packages.new(request)
+    def packages(id=nil)
+      Smartdc::Api::Packages.new(request, id)
     end
 
-    def machines
-    	@machines ||= Smartdc::Api::Machines.new(request)
+    def machines(id=nil)
+    	Smartdc::Api::Machines.new(request, id)
     end
   end
 end

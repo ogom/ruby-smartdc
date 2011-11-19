@@ -14,7 +14,7 @@ describe "Smartdc::Api::Keys" do
 
   describe ".read" do
     it "should return a dataset" do
-      client.keys.read(@key['name']).name.should eq @key['name']
+      client.keys(@key['name']).read.name.should eq @key['name']
     end
   end
 
@@ -26,7 +26,7 @@ describe "Smartdc::Api::Keys" do
 
   describe ".delete" do
     it "should return true when success" do
-      client.keys.delete(@key['name']).should be_true
+      client.keys(@key['name']).delete.should be_true
     end
   end
 end

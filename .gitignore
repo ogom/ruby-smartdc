@@ -27,5 +27,6 @@ Gemfile.lock
 .rspec
 
 # Config
-spec/fixtures/config.json
-bin/fixtures/*
+config/*.json
+config/fixtures/datasets.json
+config/fixtures/packages.json

@@ -1,17 +1,15 @@
 #!/usr/bin/env ruby
 
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'sdc_helper'
-require "optparse"
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+require 'cli_helper'
 
-machine = {}
-OptionParser.new do |option|
-  option.on('-n', '--name NAME', 'friendly name for this machine.') {|v| machine[:name] = v }
-  option.on('-e', '--dataset URN', 'dataset URN.') {|v| machine[:dataset] = v }
-  option.on('-p', '--package NAME', 'Name of the package to use on provisioning.') {|v| machine[:package] = v }
-  option.on('-h','--help') do
-    puts option
-    puts
+options = {}
+OptionParser.new do |opts|
+  opts.on('-n', '--name NAME', 'friendly name for this machine.') {|v| options[:name] = v }
+  opts.on('-e', '--dataset URN', 'dataset URN.') {|v| options[:dataset] = v }
+  opts.on('-p', '--package NAME', 'Name of the package to use on provisioning.') {|v| options[:package] = v }
+  opts.on('-h','--help') do
+    puts opts
     print 'Datasets(urn):'
     fixture('datasets').each do |dataset|
       print ' ' + dataset['urn']
@@ -21,17 +19,20 @@ OptionParser.new do |option|
     fixture('packages').each do |packages|
       print ' ' + packages['name']
     end
-    puts "\n\n"
+    puts
     exit
   end
 
   begin
-    option.parse!(ARGV)
-  rescue
-    puts "Invalid option."
-    puts option
+    opts.parse!(ARGV)
+  rescue => e
+    puts e.to_s << "\n" << opts.to_s
     exit
   end
 end
 
-pp client.machines.create machine
+begin
+  pp client.machines.create options
+rescue => e
+  puts e
+end

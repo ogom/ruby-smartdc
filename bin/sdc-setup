@@ -1,13 +1,12 @@
 #!/usr/bin/env ruby
 
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'sdc_helper'
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+require 'cli_helper'
 require 'pathname'
 
-FIXTURES = File.join(File.dirname(__FILE__), 'fixtures')
-CONFIG = File.join(FIXTURES, 'config.json')
-DATASETS = File.join(FIXTURES, 'datasets.json')
-PACKAGES = File.join(FIXTURES, 'packages.json')
+CONFIG = File.join(File.dirname(__FILE__), '..', 'config/config.json')
+DATASETS = File.join(File.dirname(__FILE__), '..', 'config/fixtures/datasets.json')
+PACKAGES = File.join(File.dirname(__FILE__), '..', 'config/fixtures/packages.json')
 config = {}
 
 config[:url] = ARGV[0] if ARGV[0]
@@ -36,7 +35,7 @@ if config[:password].size == 0
   exit 1
 end
 
-Pathname.new(FIXTURES).mkpath unless File.exist?(FIXTURES)
+Pathname.new(File.dirname(CONFIG)).mkpath unless File.exist?(File.dirname(CONFIG))
 File.open(CONFIG, 'w') do |file|
   file.write MultiJson.encode(config)
 end
@@ -46,16 +45,19 @@ begin
   if client.datacenters.find.first[1] == config[:url]
     puts 'Successful configuration.'
 
+    Pathname.new(File.dirname(DATASETS)).mkpath unless File.exist?(File.dirname(DATASETS))
     File.open(DATASETS, 'w') do |file|
       file.write MultiJson.encode(client.datasets.find)
     end
 
+    Pathname.new(File.dirname(PACKAGES)).mkpath unless File.exist?(File.dirname(PACKAGES))
     File.open(PACKAGES, 'w') do |file|
       file.write MultiJson.encode(client.packages.find)
     end
   else
     puts 'Failed Configuration.'
   end
-rescue
+rescue => e
+  puts e
   puts 'Failed Setup.'
 end

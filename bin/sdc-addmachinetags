@@ -3,6 +3,7 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'cli_helper'
 
+=begin
 key = {}
 
 name = ARGV[0]
@@ -25,9 +26,11 @@ else
   puts 'key file is empty.'
   exit 1
 end
+=end
 
-begin
-  pp client.keys.create key
-rescue => e
-  puts e
-end
+aaa = {
+  foo: "bar",
+  group: "test"
+}
+
+#pp client.machines(ARGV[0]).tags.create aaa

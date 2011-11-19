@@ -10,7 +10,7 @@ describe "Smartdc::Api::Datasets" do
   describe ".read" do
     it "should return a dataset" do
       datasets = client.datasets.find
-      client.datasets.read(datasets[0].id).id.should eq datasets[0].id
+      client.datasets(datasets[0].id).read.id.should eq datasets[0].id
     end
   end
 end

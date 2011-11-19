@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
 
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'sdc_helper'
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+require 'cli_helper'
 
-pp client.keys.delete ARGV[0]
+begin
+  pp client.keys(ARGV[0]).delete
+rescue => e
+  puts e
+end
