@@ -1,10 +1,10 @@
-require 'smartdc/api/machine_tags'
+require 'smartdc/api/machine/tags'
+require 'smartdc/api/machine/metadata'
 
 module Smartdc
   module Api
     class Machines
-      attr_reader :request
-      attr_reader :id
+      attr_reader :request, :id
 
       def initialize(request, id=nil)
         @request = request
@@ -55,9 +55,14 @@ module Smartdc
         request.status == 202 ? true : false
       end
 
-      def tags(sid=nil)
+      def tags(_id=nil)
         raise ArgumentError unless id
-        Smartdc::Api::MachineTags.new(request, id, sid)
+        Smartdc::Api::Machine::Tags.new(request, id, _id)
+      end
+      
+      def metadata(_id=nil)
+        raise ArgumentError unless id
+        Smartdc::Api::Machine::Metadata.new(request, id, _id)
       end
       
 =begin
@@ -67,11 +72,6 @@ Hold List.
   ListMachineSnapshots
   GetMachineSnapshot
   DeleteMachineSnapshot
-  
-  UpdateMachineMetadata
-  GetMachineMetadata
-  DeleteMachineMetadata
-  DeleteAllMachineMetadata
 =end
     end
   end

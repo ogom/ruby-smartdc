@@ -3,10 +3,9 @@ require 'spec_helper'
 describe "Smartdc::Api::Machines" do
   before(:all) do
     @name = UUID.new.generate
-    datasets = client.datasets.find
     machine = {
       'name'    => @name,
-      'dataset' => datasets[0].urn
+      'dataset' => client.datasets.find[0].urn
     }
     @machine = client.machines.create machine
   end

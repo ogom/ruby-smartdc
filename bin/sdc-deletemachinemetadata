@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+require 'cli_helper'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: #{File.basename($0)} machine.id [options]"
+  opts.on('-k', '--key [NAME]', 'Key Tag.') {|v| options[:key] = v }
+  opts.on_tail('-h','--help') do
+    puts opts
+    exit
+  end
+
+  begin
+    opts.parse!(ARGV)
+  rescue => e
+    puts e.to_s << "\n" << opts.to_s
+    exit
+  end
+end
+
+begin
+  pp client.machines(ARGV[0]).metadata(options[:key]).delete 
+rescue => e
+  puts e
+end

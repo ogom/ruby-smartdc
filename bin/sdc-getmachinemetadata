@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+require 'cli_helper'
+
+begin
+  pp client.machines(ARGV[0]).metadata.find 
+rescue => e
+  puts e
+end

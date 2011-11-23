@@ -6,11 +6,7 @@ require 'faraday/response/parse_json'
 
 module Smartdc
   class Request
-    attr_reader :url
-    attr_reader :version
-    attr_reader :username
-    attr_reader :password
-    attr_reader :status
+    attr_reader :url, :version, :status, :username, :password
 
     def initialize(options)
       @url = options['url']

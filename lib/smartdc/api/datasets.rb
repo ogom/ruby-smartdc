@@ -1,8 +1,7 @@
 module Smartdc
   module Api
     class Datasets
-      attr_reader :request
-      attr_reader :id
+      attr_reader :request, :id
 
       def initialize(request, id=nil)
         @request = request

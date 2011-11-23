@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "Smartdc::Client" do
   describe ".initialize" do
     it "should return a Smartdc::Request" do
-    	Smartdc::Client.new(fixture('config')).request.should be_a Smartdc::Request
+    	Smartdc::Client.new(fixture('config', 'config')).request.should be_a Smartdc::Request
     end
   end
 
