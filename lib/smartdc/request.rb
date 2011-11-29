@@ -7,12 +7,24 @@ require 'faraday/response/parse_json'
 module Smartdc
   class Request
     attr_reader :url, :version, :status, :username, :password
+    attr_reader :middlewarelv
 
-    def initialize(options)
+    def initialize(options, middleware=nil)
       @url = options['url']
       @version = options['version']
       @username = options['username']
       @password = options['password']
+
+      case middleware
+      when nil
+        @middlewarelv = 3
+      when 'hash'
+        @middlewarelv = 2
+      when 'json'
+        @middlewarelv = 1
+      else
+        @middlewarelv = 0
+      end
     end
 
     def get(path, params={})
@@ -60,8 +72,8 @@ module Smartdc
       }
       Faraday.new(options) do |builder|
         builder.use Faraday::Request::JSON
-        builder.use Faraday::Response::Mashify
-        builder.use Faraday::Response::ParseJson
+        builder.use Faraday::Response::Mashify   if middlewarelv > 2
+        builder.use Faraday::Response::ParseJson if middlewarelv > 1
         builder.adapter Faraday.default_adapter
       end
     end
