@@ -6,7 +6,7 @@ require 'faraday/response/parse_json'
 
 module Smartdc
   class Request
-    attr_reader :url, :version, :status, :username, :password
+    attr_reader :url, :version, :response, :username, :password
     attr_accessor :return_variable
 
     def initialize(options)
@@ -46,7 +46,7 @@ module Smartdc
           request.headers = {'content-length'=>'0'}  
         end
       end
-      @status = response.status
+      @response = response
       response.body
     end
 

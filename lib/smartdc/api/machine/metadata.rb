@@ -24,7 +24,7 @@ module Smartdc
 
       def delete
         request.delete('my/machines/' + @id1.to_s + '/metadata/' + id.to_s)
-        request.status == 204 ? true : false
+        request.response.status == 204 ? true : false
       end
     end
   end

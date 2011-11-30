@@ -5,7 +5,7 @@ describe "Smartdc::Request" do
     it "should return a response status" do
       request = Smartdc::Request.new(fixture('config', 'config'))
       request.get('/')
-      request.status.should be(200)
+      request.response.status.should be(200)
     end
   end
 end
