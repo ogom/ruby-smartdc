@@ -13,7 +13,7 @@ describe "Smartdc::Api::Keys" do
   end
 
   describe ".read" do
-    it "should return a dataset" do
+    it "should return a key" do
       client.keys(@key['name']).read.name.should eq @key['name']
     end
   end

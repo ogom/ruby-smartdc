@@ -21,7 +21,8 @@ OptionParser.new do |opts|
 end
 
 begin
-  pp client.machines(ARGV[0]).tags(options[:key]).read 
+  client.request.return_variable = 'json'
+  puts client.machines(ARGV[0]).tags(options[:key]).read 
 rescue => e
   puts e
 end

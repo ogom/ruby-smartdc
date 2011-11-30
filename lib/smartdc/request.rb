@@ -7,24 +7,13 @@ require 'faraday/response/parse_json'
 module Smartdc
   class Request
     attr_reader :url, :version, :status, :username, :password
-    attr_reader :middlewarelv
+    attr_accessor :return_variable
 
-    def initialize(options, middleware=nil)
+    def initialize(options)
       @url = options['url']
       @version = options['version']
       @username = options['username']
       @password = options['password']
-
-      case middleware
-      when nil
-        @middlewarelv = 3
-      when 'hash'
-        @middlewarelv = 2
-      when 'json'
-        @middlewarelv = 1
-      else
-        @middlewarelv = 0
-      end
     end
 
     def get(path, params={})
@@ -62,6 +51,17 @@ module Smartdc
     end
 
     def connection
+      case return_variable
+      when 'mash', nil
+        middleware = 3
+      when 'hash'
+        middleware = 2
+      when 'json'
+        middleware = 1
+      else
+        middleware = 0
+      end
+
       options = {
         :url => url,
         :ssl => {:verify => false},
@@ -70,10 +70,11 @@ module Smartdc
           'X-Api-Version' => version
         }
       }
+
       Faraday.new(options) do |builder|
         builder.use Faraday::Request::JSON
-        builder.use Faraday::Response::Mashify   if middlewarelv > 2
-        builder.use Faraday::Response::ParseJson if middlewarelv > 1
+        builder.use Faraday::Response::Mashify   if middleware > 2
+        builder.use Faraday::Response::ParseJson if middleware > 1
         builder.adapter Faraday.default_adapter
       end
     end

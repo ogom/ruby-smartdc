@@ -9,8 +9,8 @@ module Smartdc
   class Client
   	attr_reader :request
 
-  	def initialize(options={}, middleware=nil)
-      @request ||= Smartdc::Request.new(options, middleware)
+  	def initialize(options={})
+      @request ||= Smartdc::Request.new(options)
     end
 
     def keys(id=nil)

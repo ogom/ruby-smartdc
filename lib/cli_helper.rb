@@ -7,6 +7,6 @@ def fixture(name, path='config/fixtures')
   MultiJson.decode(json)
 end
 
-def client(middleware=nil)
-  @client ||= Smartdc.new(fixture('config', 'config'), middleware)
+def client
+  @client ||= Smartdc.new(fixture('config', 'config'))
 end

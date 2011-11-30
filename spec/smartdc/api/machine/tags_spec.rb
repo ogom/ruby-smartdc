@@ -19,7 +19,7 @@ describe "Smartdc::Api::Machine::Tags" do
   end
 
   describe ".read" do
-    it "should return a dataset" do
+    it "should return a tag" do
       client.machines(@machine.id).tags('name').read.should eq @tag['name']
     end
   end

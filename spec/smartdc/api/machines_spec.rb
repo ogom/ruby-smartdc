@@ -11,7 +11,7 @@ describe "Smartdc::Api::Machines" do
   end
 
   describe ".create" do
-    it "should return a key" do
+    it "should return a machine" do
       @machine.name.should eq @name
     end
   end

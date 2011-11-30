@@ -4,7 +4,8 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'cli_helper'
 
 begin
-  pp client.machines(ARGV[0]).read
+  client.request.return_variable = 'json'
+  puts client.machines(ARGV[0]).read
 rescue => e
   puts e
 end
