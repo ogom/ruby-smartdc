@@ -10,7 +10,7 @@ ruby-smartdc is a ruby client library for interacting with the Joyent SmartDataC
 
 ## Usage
 
-[Using slides.](http://www.slideshare.net/ogom_/smartdc-by-ruby-10047222)
+Get Started with SmartDataCenter [here](http://www.slideshare.net/ogom_/smartdc-by-ruby-10047222).
 
 
 ### CLI
