@@ -5,14 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = "smartdc"
-  s.version = "0.2.1"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ogom"]
-  s.date = "2011-11-23"
+  s.date = "2011-12-03"
   s.description = "smartdc is SmartDataCenter Public API."
   s.email = "ogom@hotmail.co.jp"
-  s.executables = ["sdc-addmachinemetadata", "sdc-addmachinetag", "sdc-createkey", "sdc-createmachine", "sdc-deletekey", "sdc-deletemachine", "sdc-deletemachinemetadata", "sdc-deletemachinetag", "sdc-getdatacenter", "sdc-getdataset", "sdc-getkey", "sdc-getmachine", "sdc-getmachinemetadata", "sdc-getmachinetag", "sdc-getpackage", "sdc-listdatacenters", "sdc-listdatasets", "sdc-listkeys", "sdc-listmachines", "sdc-listmachinetags", "sdc-listpackages", "sdc-rebootmachine", "sdc-resizemachine", "sdc-setup", "sdc-startmachine", "sdc-stopmachine"]
+  s.executables = ["sdc-addmachinemetadata", "sdc-addmachinetag", "sdc-createinstrumentation", "sdc-createkey", "sdc-createmachine", "sdc-createmachinesnapshot", "sdc-deleteinstrumentation", "sdc-deletekey", "sdc-deletemachine", "sdc-deletemachinemetadata", "sdc-deletemachinesnapshot", "sdc-deletemachinetag", "sdc-describeanalytics", "sdc-getdatacenter", "sdc-getdataset", "sdc-getinstrumentation", "sdc-getkey", "sdc-getmachine", "sdc-getmachinemetadata", "sdc-getmachinesnapshot", "sdc-getmachinetag", "sdc-getpackage", "sdc-listdatacenters", "sdc-listdatasets", "sdc-listinstrumentations", "sdc-listkeys", "sdc-listmachines", "sdc-listmachinesnapshots", "sdc-listmachinetags", "sdc-listpackages", "sdc-rebootmachine", "sdc-resizemachine", "sdc-setup", "sdc-startmachine", "sdc-startmachinefromsnapshot", "sdc-stopmachine"]
   s.extra_rdoc_files = [
     "LICENSE.md",
     "README.md"
@@ -25,50 +25,66 @@ Gem::Specification.new do |s|
     "VERSION",
     "bin/sdc-addmachinemetadata",
     "bin/sdc-addmachinetag",
+    "bin/sdc-createinstrumentation",
     "bin/sdc-createkey",
     "bin/sdc-createmachine",
+    "bin/sdc-createmachinesnapshot",
+    "bin/sdc-deleteinstrumentation",
     "bin/sdc-deletekey",
     "bin/sdc-deletemachine",
     "bin/sdc-deletemachinemetadata",
+    "bin/sdc-deletemachinesnapshot",
     "bin/sdc-deletemachinetag",
+    "bin/sdc-describeanalytics",
     "bin/sdc-getdatacenter",
     "bin/sdc-getdataset",
+    "bin/sdc-getinstrumentation",
     "bin/sdc-getkey",
     "bin/sdc-getmachine",
     "bin/sdc-getmachinemetadata",
+    "bin/sdc-getmachinesnapshot",
     "bin/sdc-getmachinetag",
     "bin/sdc-getpackage",
     "bin/sdc-listdatacenters",
     "bin/sdc-listdatasets",
+    "bin/sdc-listinstrumentations",
     "bin/sdc-listkeys",
     "bin/sdc-listmachines",
+    "bin/sdc-listmachinesnapshots",
     "bin/sdc-listmachinetags",
     "bin/sdc-listpackages",
     "bin/sdc-rebootmachine",
     "bin/sdc-resizemachine",
     "bin/sdc-setup",
     "bin/sdc-startmachine",
+    "bin/sdc-startmachinefromsnapshot",
     "bin/sdc-stopmachine",
+    "config/fixtures/instrumentation.json",
     "config/fixtures/key.json",
     "config/fixtures/tag.json",
     "lib/cli_helper.rb",
     "lib/faraday/response/mashify.rb",
     "lib/faraday/response/parse_json.rb",
     "lib/smartdc.rb",
+    "lib/smartdc/api/analytics.rb",
+    "lib/smartdc/api/analytics/instrumentations.rb",
     "lib/smartdc/api/datacenters.rb",
     "lib/smartdc/api/datasets.rb",
     "lib/smartdc/api/keys.rb",
     "lib/smartdc/api/machine/metadata.rb",
+    "lib/smartdc/api/machine/snapshots.rb",
     "lib/smartdc/api/machine/tags.rb",
     "lib/smartdc/api/machines.rb",
     "lib/smartdc/api/packages.rb",
     "lib/smartdc/client.rb",
     "lib/smartdc/request.rb",
     "smartdc.gemspec",
+    "spec/smartdc/api/analytics_spec.rb",
     "spec/smartdc/api/datacenters_spec.rb",
     "spec/smartdc/api/datasets_spec.rb",
     "spec/smartdc/api/keys_spec.rb",
     "spec/smartdc/api/machine/metadata_spec.rb",
+    "spec/smartdc/api/machine/snapshots_spec.rb",
     "spec/smartdc/api/machine/tags_spec.rb",
     "spec/smartdc/api/machines_spec.rb",
     "spec/smartdc/api/packages_spec.rb",
