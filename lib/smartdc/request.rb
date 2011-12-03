@@ -34,7 +34,7 @@ module Smartdc
 
   private
     def request(method, path, params={})
-      response = connection.send(method) do |request|
+      @response = connection.send(method) do |request|
         case method
         when :get
           request.url path, params
@@ -46,8 +46,7 @@ module Smartdc
           request.headers = {'content-length'=>'0'}  
         end
       end
-      @response = response
-      response.body
+      @response.body
     end
 
     def connection

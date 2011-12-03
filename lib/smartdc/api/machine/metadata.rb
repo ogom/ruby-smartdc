@@ -1,5 +1,5 @@
-module Smartdc
-  module Api::Machine
+module Smartdc::Api
+  module Machine
     class Metadata
       attr_reader :request, :id
 

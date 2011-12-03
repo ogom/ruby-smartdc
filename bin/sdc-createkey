@@ -4,7 +4,6 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'cli_helper'
 
 key = {}
-
 name = ARGV[0]
 if name
   key[:name] = name
@@ -27,7 +26,8 @@ else
 end
 
 begin
-  pp client.keys.create key
+  client.request.return_variable = 'json'
+  puts client.keys.create key
 rescue => e
   puts e
 end

@@ -1,0 +1,4 @@
+{
+    "module": "syscall"
+  , "stat": "syscalls"
+}

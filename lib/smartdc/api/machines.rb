@@ -1,5 +1,6 @@
 require 'smartdc/api/machine/tags'
 require 'smartdc/api/machine/metadata'
+require 'smartdc/api/machine/snapshots'
 
 module Smartdc
   module Api
@@ -65,14 +66,10 @@ module Smartdc
         Smartdc::Api::Machine::Metadata.new(request, id, _id)
       end
       
-=begin
-Hold List.  
-  CreateMachineSnapshot
-  StartMachineFromSnapshot
-  ListMachineSnapshots
-  GetMachineSnapshot
-  DeleteMachineSnapshot
-=end
+      def snapshots(_id=nil)
+        raise ArgumentError unless id
+        Smartdc::Api::Machine::Snapshots.new(request, id, _id)
+      end
     end
   end
 end

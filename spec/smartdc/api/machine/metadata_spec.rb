@@ -8,16 +8,15 @@ describe "Smartdc::Api::Machine::Metadata" do
       'dataset' => client.datasets.find[0].urn
     }
     @machine = client.machines.create machine
-    @tag = fixture('tag')
+    @fixture = fixture('tag')
   end
 
   describe ".create" do
     it "should return a tag" do
-      tag = client.machines(@machine.id).metadata.create @tag
-      tag.name.should eq @tag['name']
+      tag = client.machines(@machine.id).metadata.create @fixture
+      tag.name.should eq @fixture['name']
     end
   end
-
 
   describe ".find" do
     it "should return some metadata" do
@@ -33,6 +32,7 @@ describe "Smartdc::Api::Machine::Metadata" do
 
   after(:all) do
     machine = client.machines(@machine.id)
+    machine.stop
     8.times do |i|
       break if machine.read.state == 'stopped'
       sleep i

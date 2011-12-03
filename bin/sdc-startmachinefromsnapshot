@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
+require 'cli_helper'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: #{File.basename($0)} machine.id [options]"
+  opts.on('-n', '--name NAME', 'snapshot name.') {|v| options[:name] = v }
+  opts.on_tail('-h','--help') do
+    puts opts
+    exit
+  end
+
+  begin
+    opts.parse!(ARGV)
+  rescue => e
+    puts e.to_s << "\n" << opts.to_s
+    exit
+  end
+end
+
+begin
+  client.request.return_variable = 'json'
+  puts client.machines(ARGV[0]).snapshots(options[:name]).start 
+rescue => e
+  puts e
+end

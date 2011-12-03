@@ -39,7 +39,6 @@ describe "Smartdc::Client" do
 
   describe ".analytics" do
     it "should return a Smartdc::Api::Analytics" do
-      pending "Hold"
       Smartdc::Client.new.analytics.should be_a Smartdc::Api::Analytics
     end
   end

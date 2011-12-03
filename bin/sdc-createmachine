@@ -32,7 +32,8 @@ OptionParser.new do |opts|
 end
 
 begin
-  pp client.machines.create options
+  client.request.return_variable = 'json'
+  puts client.machines.create options
 rescue => e
   puts e
 end

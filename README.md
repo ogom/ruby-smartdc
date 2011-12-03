@@ -10,14 +10,26 @@ ruby-smartdc is a ruby client library for interacting with the Joyent SmartDataC
 
 ## Usage
 
+[Using slides.](http://www.slideshare.net/ogom_/smartdc-by-ruby-10047222)
+
+
 ### CLI
 
-    sdc-setup
+    $ sdc-setup https://example.com
+    version:[~6.5] 
+    Username (login): auth_user
+    Password: auth_pass
+    Successful configuration.
 
-[Slid](http://www.slideshare.net/ogom_/smartdc-by-ruby-10047222) the command.
+    $ sdc-listdatacenters 
+    {
+      "example": "https://example.com"
+    }
 
 
 ### Program
+
+Connect and Machine find.
 
     require 'smartdc'
 
@@ -51,6 +63,23 @@ ruby-smartdc is a ruby client library for interacting with the Joyent SmartDataC
       end
       puts
     end
+
+
+Return type of the variable.
+
+    client = Smartdc.new(config)
+    
+    # Type of a variable to mash. (Default)
+    client.request.return_variable = 'mash'
+    puts client.datacenters.find #=> #<Hashie::Mash example="example.com">
+
+    # Type of a variable to hash.
+    client.request.return_variable = 'hash'
+    puts client.datacenters.find #=> {"example"=>"https://example.com"}
+
+    # Type of a variable to json.
+    client.request.return_variable = 'json'
+    puts client.datacenters.find #=> {"example": "https://example.com"}
 
 
 ## Copyright

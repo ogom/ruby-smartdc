@@ -3,13 +3,13 @@ require 'smartdc/api/datacenters'
 require 'smartdc/api/datasets'
 require 'smartdc/api/packages'
 require 'smartdc/api/machines'
-#require 'smartdc/api/analytics'
+require 'smartdc/api/analytics'
 
 module Smartdc
   class Client
-  	attr_reader :request
+    attr_reader :request
 
-  	def initialize(options={})
+    def initialize(options={})
       @request ||= Smartdc::Request.new(options)
     end
 
@@ -31,6 +31,10 @@ module Smartdc
 
     def machines(id=nil)
     	Smartdc::Api::Machines.new(request, id)
+    end
+
+    def analytics(id=nil)
+      Smartdc::Api::Analytics.new(request, id)
     end
   end
 end

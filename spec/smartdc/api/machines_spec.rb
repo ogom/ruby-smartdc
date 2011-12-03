@@ -85,6 +85,7 @@ describe "Smartdc::Api::Machines" do
   describe ".delete" do
     it "should return true when success" do
       machine = client.machines(@machine.id)
+      machine.stop
       8.times do |i|
         break if machine.read.state == 'stopped'
         sleep i
