@@ -2,13 +2,18 @@ require 'spec_helper'
 
 describe "Smartdc::Api::Machine::Tags" do
   before(:all) do
+    @fixture = fixture('tag')
     @name = UUID.new.generate
     machine = {
       'name'    => @name,
       'dataset' => client.datasets.find[0].urn
     }
     @machine = client.machines.create machine
-    @fixture = fixture('tag')
+    machine = client.machines(@machine.id)
+    8.times do |i|
+      break if machine.read.state == 'running'
+      sleep i
+    end
   end
 
   describe ".create" do

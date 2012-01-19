@@ -75,6 +75,11 @@ describe "Smartdc::Api::Machines" do
     it "should return state at running when success" do
       machine = client.machines(@machine.id)
       8.times do |i|
+        break if machine.read.state == 'stopped'
+        sleep i
+      end
+      
+      8.times do |i|
         break if machine.read.state == 'running'
         sleep i
       end
