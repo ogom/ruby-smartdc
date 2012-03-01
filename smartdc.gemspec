@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ogom"]
-  s.date = "2011-12-03"
+  s.date = "2012-03-01"
   s.description = "smartdc is SmartDataCenter Public API."
   s.email = "ogom@hotmail.co.jp"
   s.executables = ["sdc-addmachinemetadata", "sdc-addmachinetag", "sdc-createinstrumentation", "sdc-createkey", "sdc-createmachine", "sdc-createmachinesnapshot", "sdc-deleteinstrumentation", "sdc-deletekey", "sdc-deletemachine", "sdc-deletemachinemetadata", "sdc-deletemachinesnapshot", "sdc-deletemachinetag", "sdc-describeanalytics", "sdc-getdatacenter", "sdc-getdataset", "sdc-getinstrumentation", "sdc-getkey", "sdc-getmachine", "sdc-getmachinemetadata", "sdc-getmachinesnapshot", "sdc-getmachinetag", "sdc-getpackage", "sdc-listdatacenters", "sdc-listdatasets", "sdc-listinstrumentations", "sdc-listkeys", "sdc-listmachines", "sdc-listmachinesnapshots", "sdc-listmachinetags", "sdc-listpackages", "sdc-rebootmachine", "sdc-resizemachine", "sdc-setup", "sdc-startmachine", "sdc-startmachinefromsnapshot", "sdc-stopmachine"]
@@ -96,42 +96,42 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/ogom/ruby-smartdc"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
+  s.rubygems_version = "1.8.15"
   s.summary = "SmartDataCenter CloudApi client by ruby."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<faraday>, ["~> 0.7.5"])
+      s.add_runtime_dependency(%q<faraday>, ["~> 0.7.6"])
       s.add_runtime_dependency(%q<hashie>, ["~> 1.2.0"])
-      s.add_runtime_dependency(%q<multi_json>, ["~> 1.0.3"])
-      s.add_runtime_dependency(%q<multipart-post>, ["~> 1.1.3"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.7.0"])
+      s.add_runtime_dependency(%q<multi_json>, ["~> 1.1.0"])
+      s.add_runtime_dependency(%q<multipart-post>, ["~> 1.1.4"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.8.0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_development_dependency(%q<rcov>, [">= 0"])
+      s.add_development_dependency(%q<jeweler>, ["~> 1.8.3"])
+      s.add_development_dependency(%q<rcov>, ["~> 0.9.11"])
       s.add_development_dependency(%q<uuid>, ["~> 2.3.4"])
     else
-      s.add_dependency(%q<faraday>, ["~> 0.7.5"])
+      s.add_dependency(%q<faraday>, ["~> 0.7.6"])
       s.add_dependency(%q<hashie>, ["~> 1.2.0"])
-      s.add_dependency(%q<multi_json>, ["~> 1.0.3"])
-      s.add_dependency(%q<multipart-post>, ["~> 1.1.3"])
-      s.add_dependency(%q<rspec>, ["~> 2.7.0"])
+      s.add_dependency(%q<multi_json>, ["~> 1.1.0"])
+      s.add_dependency(%q<multipart-post>, ["~> 1.1.4"])
+      s.add_dependency(%q<rspec>, ["~> 2.8.0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-      s.add_dependency(%q<rcov>, [">= 0"])
+      s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
+      s.add_dependency(%q<rcov>, ["~> 0.9.11"])
       s.add_dependency(%q<uuid>, ["~> 2.3.4"])
     end
   else
-    s.add_dependency(%q<faraday>, ["~> 0.7.5"])
+    s.add_dependency(%q<faraday>, ["~> 0.7.6"])
     s.add_dependency(%q<hashie>, ["~> 1.2.0"])
-    s.add_dependency(%q<multi_json>, ["~> 1.0.3"])
-    s.add_dependency(%q<multipart-post>, ["~> 1.1.3"])
-    s.add_dependency(%q<rspec>, ["~> 2.7.0"])
+    s.add_dependency(%q<multi_json>, ["~> 1.1.0"])
+    s.add_dependency(%q<multipart-post>, ["~> 1.1.4"])
+    s.add_dependency(%q<rspec>, ["~> 2.8.0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.6.4"])
-    s.add_dependency(%q<rcov>, [">= 0"])
+    s.add_dependency(%q<jeweler>, ["~> 1.8.3"])
+    s.add_dependency(%q<rcov>, ["~> 0.9.11"])
     s.add_dependency(%q<uuid>, ["~> 2.3.4"])
   end
 end
