@@ -4,13 +4,24 @@ describe "Smartdc::Api::Machine::Metadata" do
   before(:all) do
     @fixture = fixture('tag')
     @name = UUID.new.generate
+    client.datasets.find.each do |dataset|
+      if dataset.type == "smartmachine"
+        @dataset_urn = dataset.urn
+        break
+      end
+    end
+
     machine = {
       'name'    => @name,
-      'dataset' => client.datasets.find[0].urn
+      'dataset' => @dataset_urn
     }
     @machine = client.machines.create machine
     machine = client.machines(@machine.id)
-    8.times do |i|
+    88.times do |i|
+      break if machine.read.state == 'running'
+      sleep i
+    end
+    88.times do |i|
       break if machine.read.state == 'running'
       sleep i
     end
@@ -31,14 +42,15 @@ describe "Smartdc::Api::Machine::Metadata" do
 
   describe ".delete" do
     it "should return true when success" do
-      client.machines(@machine.id).metadata('name').delete.should be_true
+      client.machines(@machine.id).metadata('name').delete.should be_nil
     end
   end
 
   after(:all) do
+    sleep 8
     machine = client.machines(@machine.id)
     machine.stop
-    8.times do |i|
+    88.times do |i|
       break if machine.read.state == 'stopped'
       sleep i
     end

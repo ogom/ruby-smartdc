@@ -19,12 +19,11 @@ module Smartdc::Api
       end
 
       def find(params={})
-        request.get('my/machines/' + @id1.to_s + '/metadata/', params)
+        request.get('my/machines/' + @id1.to_s + '/metadata', params)
       end
 
       def delete
         request.delete('my/machines/' + @id1.to_s + '/metadata/' + id.to_s)
-        request.response.status == 204 ? true : false
       end
     end
   end

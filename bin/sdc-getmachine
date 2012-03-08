@@ -4,8 +4,9 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'cli_helper'
 
 begin
-  client.request.return_variable = 'json'
   puts client.machines(ARGV[0]).read
-rescue => e
+rescue Smartdc::Error::NotFound => e
   puts e
+rescue => e
+  puts e.inspect
 end

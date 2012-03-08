@@ -18,12 +18,11 @@ module Smartdc::Api
       end
 
       def find(params={})
-        request.get('my/analytics/instrumentations/', params)
+        request.get('my/analytics/instrumentations', params)
       end
 
       def delete
         request.delete('my/analytics/instrumentations/' + id.to_s)
-        request.response.status == 204 ? true : false
       end
 
       def value

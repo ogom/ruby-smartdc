@@ -9,7 +9,7 @@ OptionParser.new do |opts|
   opts.on('-p', '--package NAME', 'Name of the package to use on provisioning.') {|v| options[:package] = v }
   opts.on('-h','--help') do
     puts opts
-    print 'Packages(name):'
+    print "\n" + 'Packages(name):'
     fixture('packages').each do |packages|
       print ' ' + packages['name']
     end
@@ -26,7 +26,9 @@ OptionParser.new do |opts|
 end
 
 begin
-  pp client.machines(ARGV[0]).resize options
+  client.machines(ARGV[0]).resize options
 rescue => e
-  puts e
+  puts e.inspect
+else
+  puts "Success"  
 end

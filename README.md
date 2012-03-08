@@ -65,23 +65,23 @@ Connect and Machine find.
     end
 
 
-Return type of the variable.
+Format of the return value.
 
     client = Smartdc.new(config)
     
     # Type of a variable to mash. (Default)
-    client.request.return_variable = 'mash'
+    client.format = 'mash'
     puts client.datacenters.find #=> #<Hashie::Mash example="example.com">
 
     # Type of a variable to hash.
-    client.request.return_variable = 'hash'
+    client.format = 'hash'
     puts client.datacenters.find #=> {"example"=>"https://example.com"}
 
     # Type of a variable to json.
-    client.request.return_variable = 'json'
+    client.format = 'json'
     puts client.datacenters.find #=> {"example": "https://example.com"}
 
 
 ## Copyright
 
-Copyright (c) 2011 ogom. See LICENSE.md for further details.
+Copyright (c) 2012 ogom. See LICENSE.md for further details.

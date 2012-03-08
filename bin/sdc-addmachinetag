@@ -23,7 +23,7 @@ end
 
 begin
   tag = {options[:key] => options[:value]}
-  pp client.machines(ARGV[0]).tags.create tag
+  puts client.machines(ARGV[0]).tags.create tag
 rescue => e
-  puts e
+  puts e.inspect
 end

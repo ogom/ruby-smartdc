@@ -26,8 +26,7 @@ else
 end
 
 begin
-  client.request.return_variable = 'json'
   puts client.keys.create key
 rescue => e
-  puts e
+  puts e.inspect
 end

@@ -1,19 +1,21 @@
 require 'hashie/mash'
 require 'multi_json'
 require 'faraday'
-require 'faraday/response/mashify'
-require 'faraday/response/parse_json'
+require 'smartdc/response/mashify'
+require 'smartdc/response/parse_json'
+require 'smartdc/response/raise_error'
 
 module Smartdc
   class Request
-    attr_reader :url, :version, :response, :username, :password
-    attr_accessor :return_variable
+    attr_reader :url, :version, :username, :password
+    attr_accessor :format
 
     def initialize(options)
       @url = options['url']
       @version = options['version']
       @username = options['username']
       @password = options['password']
+      @format = options['format']
     end
 
     def get(path, params={})
@@ -34,7 +36,7 @@ module Smartdc
 
   private
     def request(method, path, params={})
-      @response = connection.send(method) do |request|
+      response = connection.send(method) do |request|
         case method
         when :get
           request.url path, params
@@ -46,11 +48,11 @@ module Smartdc
           request.headers = {'content-length'=>'0'}  
         end
       end
-      @response.body
+      response.body
     end
 
     def connection
-      case return_variable
+      case format
       when 'mash', nil
         middleware = 3
       when 'hash'
@@ -72,14 +74,15 @@ module Smartdc
 
       Faraday.new(options) do |builder|
         builder.use Faraday::Request::JSON
-        builder.use Faraday::Response::Mashify   if middleware > 2
-        builder.use Faraday::Response::ParseJson if middleware > 1
+        builder.use Smartdc::Response::Mashify   if middleware > 2
+        builder.use Smartdc::Response::ParseJson if middleware > 1
+        builder.use Smartdc::Response::RaiseError
         builder.adapter Faraday.default_adapter
       end
     end
 
     def basic_auth(username, password)
-      'Basic ' + Base64.encode64("#{username}:#{password}").gsub!("\n", '')
+      'Basic ' + ["#{username}:#{password}"].pack('m').delete("\r\n")
     end
   end
 end

@@ -4,7 +4,9 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'cli_helper'
 
 begin
-  pp client.machines(ARGV[0]).reboot
+  client.machines(ARGV[0]).reboot
 rescue => e
-  puts e
+  puts e.inspect
+else
+  puts "Success"  
 end

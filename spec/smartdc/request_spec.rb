@@ -4,8 +4,9 @@ describe "Smartdc::Request" do
   describe "http response status" do
     it "should return a response status" do
       request = Smartdc::Request.new(fixture('config', 'config'))
-      request.get('/')
-      request.response.status.should be(200)
+      expect{
+        request.get('smartdc/')
+      }.to raise_error(Smartdc::Error::NotFound)
     end
   end
 end

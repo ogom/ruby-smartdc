@@ -3,9 +3,16 @@ require 'spec_helper'
 describe "Smartdc::Api::Machines" do
   before(:all) do
     @name = UUID.new.generate
+    client.datasets.find.each do |dataset|
+      if dataset.type == "smartmachine"
+        @dataset_urn = dataset.urn
+        break
+      end
+    end
+
     machine = {
       'name'    => @name,
-      'dataset' => client.datasets.find[0].urn
+      'dataset' => @dataset_urn
     }
     @machine = client.machines.create machine
   end
@@ -23,7 +30,11 @@ describe "Smartdc::Api::Machines" do
 
     it "should return state at running when success" do
       machine = client.machines(@machine.id)
-      8.times do |i|
+      88.times do |i|
+        break if machine.read.state == 'running'
+        sleep i
+      end
+      88.times do |i|
         break if machine.read.state == 'running'
         sleep i
       end
@@ -39,12 +50,12 @@ describe "Smartdc::Api::Machines" do
 
   describe ".stop" do
     it "should return true when success" do
-      client.machines(@machine.id).stop.should be_true
+      client.machines(@machine.id).stop.should be_nil
     end
 
     it "should return state at stopped when success" do
       machine = client.machines(@machine.id)
-      8.times do |i|
+      88.times do |i|
         break if machine.read.state == 'stopped'
         sleep i
       end
@@ -54,32 +65,12 @@ describe "Smartdc::Api::Machines" do
 
   describe ".start" do
     it "should return true when success" do
-      client.machines(@machine.id).start.should be_true
+      client.machines(@machine.id).start.should be_nil
     end
 
     it "should return state at running when success" do
       machine = client.machines(@machine.id)
-      8.times do |i|
-        break if machine.read.state == 'running'
-        sleep i
-      end
-      machine.read.state.should eq 'running'
-    end
-  end
-
-  describe ".reboot" do
-    it "should return true when success" do
-      client.machines(@machine.id).reboot.should be_true
-    end
-
-    it "should return state at running when success" do
-      machine = client.machines(@machine.id)
-      8.times do |i|
-        break if machine.read.state == 'stopped'
-        sleep i
-      end
-      
-      8.times do |i|
+      88.times do |i|
         break if machine.read.state == 'running'
         sleep i
       end
@@ -91,11 +82,11 @@ describe "Smartdc::Api::Machines" do
     it "should return true when success" do
       machine = client.machines(@machine.id)
       machine.stop
-      8.times do |i|
+      88.times do |i|
         break if machine.read.state == 'stopped'
         sleep i
       end
-      client.machines(@machine.id).delete.should be_true
+      client.machines(@machine.id).delete.should be_nil
     end
   end
 end

@@ -26,7 +26,7 @@ describe "Smartdc::Api::instrumentations" do
 
   describe ".delete" do
     it "should return true when success" do
-      client.analytics.instrumentations(@instrumentation.id).delete.should be_true
+      client.analytics.instrumentations(@instrumentation.id).delete.should be_nil
     end
   end
 end

@@ -16,7 +16,6 @@ module Smartdc::Api
       def start
         raise ArgumentError unless id
         request.post('my/machines/' + @id1.to_s + '/snapshots/' + id.to_s)
-        request.response.status == 202 ? true : false
       end
 
       def read
@@ -25,12 +24,11 @@ module Smartdc::Api
       end
 
       def find(params={})
-        request.get('my/machines/' + @id1.to_s + '/snapshots/', params)
+        request.get('my/machines/' + @id1.to_s + '/snapshots', params)
       end
 
       def delete
         request.delete('my/machines/' + @id1.to_s + '/snapshots/' + id.to_s)
-        request.response.status == 204 ? true : false
       end
     end
   end

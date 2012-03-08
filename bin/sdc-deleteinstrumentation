@@ -4,7 +4,9 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'cli_helper'
 
 begin
-  pp client.analytics.instrumentations(ARGV[0]).delete
+  client.analytics.instrumentations(ARGV[0]).delete
 rescue => e
-  puts e
+  puts e.inspect
+else
+  puts "Success"  
 end

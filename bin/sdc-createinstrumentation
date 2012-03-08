@@ -21,8 +21,7 @@ OptionParser.new do |opts|
 end
 
 begin
-  client.request.return_variable = 'json'
   puts client.analytics.instrumentations.create options
 rescue => e
-  puts e
+  puts e.inspect
 end

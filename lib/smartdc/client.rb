@@ -13,6 +13,10 @@ module Smartdc
       @request ||= Smartdc::Request.new(options)
     end
 
+    def format=(format)
+      @request.format = format
+    end
+
     def keys(id=nil)
       Smartdc::Api::Keys.new(request, id)
     end

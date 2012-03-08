@@ -10,3 +10,9 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 RSpec.configure do |config|
 end
+
+def client
+  @client ||= Smartdc.new(fixture('config', 'config'))
+  @client.format = 'mash'
+  @client
+end

@@ -28,32 +28,27 @@ module Smartdc
       def delete
         raise ArgumentError unless id
         request.delete('my/machines/' + id.to_s)
-        request.response.status == 204 ? true : false
       end
 
       def stop
         raise ArgumentError unless id
         request.post('my/machines/' + id.to_s, {'action'=>'stop'})
-        request.response.status == 202 ? true : false
       end
 
       def start
         raise ArgumentError unless id
         request.post('my/machines/' + id.to_s, {'action'=>'start'})
-        request.response.status == 202 ? true : false
       end
 
       def reboot
         raise ArgumentError unless id 
         request.post('my/machines/' + id.to_s, {'action'=>'reboot'})
-        request.response.status == 202 ? true : false
       end
 
       def resize(params={})
         raise ArgumentError unless id
         params[:action] = 'resize'
         request.post('my/machines/' + id.to_s, params)
-        request.response.status == 202 ? true : false
       end
 
       def tags(_id=nil)

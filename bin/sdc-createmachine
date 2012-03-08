@@ -10,12 +10,11 @@ OptionParser.new do |opts|
   opts.on('-p', '--package NAME', 'Name of the package to use on provisioning.') {|v| options[:package] = v }
   opts.on('-h','--help') do
     puts opts
-    print 'Datasets(urn):'
+    print "\n" + 'Datasets(urn):'
     fixture('datasets').each do |dataset|
       print ' ' + dataset['urn']
     end
-    puts
-    print 'Packages(name):'
+    print "\n\n" + 'Packages(name):'
     fixture('packages').each do |packages|
       print ' ' + packages['name']
     end
@@ -32,8 +31,9 @@ OptionParser.new do |opts|
 end
 
 begin
-  client.request.return_variable = 'json'
   puts client.machines.create options
-rescue => e
+rescue Smartdc::Error::Conflict => e
   puts e
+rescue => e
+  puts e.inspect
 end

@@ -35,29 +35,33 @@ if config[:password].size == 0
   exit 1
 end
 
+config[:format] = 'json'
+
 Pathname.new(File.dirname(CONFIG)).mkpath unless File.exist?(File.dirname(CONFIG))
 File.open(CONFIG, 'w') do |file|
   file.write MultiJson.encode(config)
 end
 
 begin
+  client.format = 'mash'
   datacenters = client.datacenters.find
   if client.datacenters.find.first[1] == config[:url]
     puts 'Successful configuration.'
 
+    client.format = 'json'
     Pathname.new(File.dirname(DATASETS)).mkpath unless File.exist?(File.dirname(DATASETS))
     File.open(DATASETS, 'w') do |file|
-      file.write MultiJson.encode(client.datasets.find)
+      file.write client.datasets.find
     end
 
     Pathname.new(File.dirname(PACKAGES)).mkpath unless File.exist?(File.dirname(PACKAGES))
     File.open(PACKAGES, 'w') do |file|
-      file.write MultiJson.encode(client.packages.find)
+      file.write client.packages.find
     end
   else
     puts 'Failed Configuration.'
   end
 rescue => e
-  puts e
+  puts e.inspect
   puts 'Failed Setup.'
 end

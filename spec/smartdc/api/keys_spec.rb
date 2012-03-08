@@ -26,7 +26,7 @@ describe "Smartdc::Api::Keys" do
 
   describe ".delete" do
     it "should return true when success" do
-      client.keys(@key['name']).delete.should be_true
+      client.keys(@key['name']).delete.should be_nil
     end
   end
 end

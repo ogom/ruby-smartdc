@@ -21,8 +21,7 @@ OptionParser.new do |opts|
 end
 
 begin
-  client.request.return_variable = 'json'
   puts client.machines(ARGV[0]).snapshots.create options
 rescue => e
-  puts e
+  puts e.inspect
 end

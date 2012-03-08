@@ -23,7 +23,7 @@ end
 
 begin
   metadata = {options[:key] => options[:value]}
-  pp client.machines(ARGV[0]).metadata.create metadata
+  puts client.machines(ARGV[0]).metadata.create metadata
 rescue => e
-  puts e
+  puts e.inspect
 end

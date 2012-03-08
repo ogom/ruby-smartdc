@@ -21,7 +21,9 @@ OptionParser.new do |opts|
 end
 
 begin
-  pp client.machines(ARGV[0]).tags(options[:key]).delete 
+  client.machines(ARGV[0]).tags(options[:key]).delete 
 rescue => e
-  puts e
+  puts e.inspect
+else
+  puts "Success"  
 end

@@ -24,7 +24,6 @@ module Smartdc
       def delete
         raise ArgumentError unless id
         request.delete('my/keys/' + id.to_s)
-        request.response.status == 204 ? true : false
       end
     end
   end

@@ -21,12 +21,11 @@ OptionParser.new do |opts|
 end
 
 begin
-  client.request.return_variable = 'json'
   if options[:value]
     puts client.analytics.instrumentations(ARGV[0]).value
   else
     puts client.analytics.instrumentations(ARGV[0]).read
   end
 rescue => e
-  puts e
+  puts e.inspect
 end
