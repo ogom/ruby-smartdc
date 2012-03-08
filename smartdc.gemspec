@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "smartdc"
-  s.version = "0.3.0"
+  s.version = "0.4.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ogom"]
-  s.date = "2012-03-01"
+  s.date = "2012-03-08"
   s.description = "smartdc is SmartDataCenter Public API."
   s.email = "ogom@hotmail.co.jp"
   s.executables = ["sdc-addmachinemetadata", "sdc-addmachinetag", "sdc-createinstrumentation", "sdc-createkey", "sdc-createmachine", "sdc-createmachinesnapshot", "sdc-deleteinstrumentation", "sdc-deletekey", "sdc-deletemachine", "sdc-deletemachinemetadata", "sdc-deletemachinesnapshot", "sdc-deletemachinetag", "sdc-describeanalytics", "sdc-getdatacenter", "sdc-getdataset", "sdc-getinstrumentation", "sdc-getkey", "sdc-getmachine", "sdc-getmachinemetadata", "sdc-getmachinesnapshot", "sdc-getmachinetag", "sdc-getpackage", "sdc-listdatacenters", "sdc-listdatasets", "sdc-listinstrumentations", "sdc-listkeys", "sdc-listmachines", "sdc-listmachinesnapshots", "sdc-listmachinetags", "sdc-listpackages", "sdc-rebootmachine", "sdc-resizemachine", "sdc-setup", "sdc-startmachine", "sdc-startmachinefromsnapshot", "sdc-stopmachine"]
@@ -63,8 +63,6 @@ Gem::Specification.new do |s|
     "config/fixtures/key.json",
     "config/fixtures/tag.json",
     "lib/cli_helper.rb",
-    "lib/faraday/response/mashify.rb",
-    "lib/faraday/response/parse_json.rb",
     "lib/smartdc.rb",
     "lib/smartdc/api/analytics.rb",
     "lib/smartdc/api/analytics/instrumentations.rb",
@@ -77,7 +75,11 @@ Gem::Specification.new do |s|
     "lib/smartdc/api/machines.rb",
     "lib/smartdc/api/packages.rb",
     "lib/smartdc/client.rb",
+    "lib/smartdc/error.rb",
     "lib/smartdc/request.rb",
+    "lib/smartdc/response/mashify.rb",
+    "lib/smartdc/response/parse_json.rb",
+    "lib/smartdc/response/raise_error.rb",
     "smartdc.gemspec",
     "spec/smartdc/api/analytics_spec.rb",
     "spec/smartdc/api/datacenters_spec.rb",
