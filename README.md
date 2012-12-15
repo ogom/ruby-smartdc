@@ -50,7 +50,7 @@ end
 
 ## Tests
 ```
-$ rake spec
+$ rspec spec
 ```
 
 [![Build Status](https://secure.travis-ci.org/ogom/ruby-smartdc.png?branch=master)](http://travis-ci.org/ogom/ruby-smartdc)
