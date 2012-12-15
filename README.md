@@ -42,9 +42,18 @@ client = Smartdc.new({
 
 client.machines.all.content.each do |machine|
   p "#{machine['name']} is state at #{machine['state']}." 
-  #client.machines.stop(machine['id']).status
+
+  # Stop machine
+  p client.machines.stop(machine['id']).status
 end
 ```
+
+## Tests
+```
+$ rake spec
+```
+
+[![Build Status](https://secure.travis-ci.org/ogom/ruby-smartdc.png?branch=master)](http://travis-ci.org/ogom/ruby-smartdc)
 
 ## License 
 * MIT
