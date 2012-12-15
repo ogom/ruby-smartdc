@@ -1,29 +1,28 @@
 module Smartdc
   module Api
     class Keys
-      attr_reader :request, :id
+      attr_reader :request
 
-      def initialize(request, id=nil)
-        @request = request
-        @id = id
+      def initialize(options)
+        @request = Smartdc::Request.new(options)
       end
 
-      def create(params={})
-        request.post('my/keys/', params)
+      def create(raw={})
+        request.post('my/keys/', raw)
       end
 
-      def read
+      def read(id)
         raise ArgumentError unless id
         request.get('my/keys/' + id.to_s)
       end
 
-      def find(params={})
-        request.get('my/keys', params)
+      def all(query={})
+        request.get('my/keys', query)
       end
 
-      def delete
+      def destroy(id)
         raise ArgumentError unless id
-        request.delete('my/keys/' + id.to_s)
+        request.del('my/keys/' + id.to_s)
       end
     end
   end

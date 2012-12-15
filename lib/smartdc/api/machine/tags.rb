@@ -1,29 +1,28 @@
 module Smartdc::Api
   module Machine
     class Tags
-      attr_reader :request, :id
+      attr_reader :request
 
-      def initialize(request, id1, id)
-        @request = request
-        @id1 = id1
+      def initialize(id, options)
         @id = id
+        @request = Smartdc::Request.new(options)
       end
 
-      def create(params={})
-        request.post('my/machines/' + @id1.to_s + '/tags/', params)
+      def create(raw={})
+        request.post('my/machines/' + @id.to_s + '/tags/', raw)
       end
       
-      def read
+      def read(id)
         raise ArgumentError unless id
-        request.get('my/machines/' + @id1.to_s + '/tags/' + id.to_s)
+        request.get('my/machines/' + @id.to_s + '/tags/' + id.to_s)
       end
 
-      def find(params={})
-        request.get('my/machines/' + @id1.to_s + '/tags', params)
+      def all(query={})
+        request.get('my/machines/' + @id.to_s + '/tags', query)
       end
 
-      def delete
-        request.delete('my/machines/' + @id1.to_s + '/tags/' + id.to_s)
+      def destroy(id=nil)
+        request.del('my/machines/' + @id.to_s + '/tags/' + id.to_s)
       end
     end
   end
