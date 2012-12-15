@@ -1,29 +1,23 @@
 module Smartdc::Api
   module Machine
     class Metadata
-      attr_reader :request, :id
+      attr_reader :request
 
-      def initialize(request, id1, id)
-        @request = request
-        @id1 = id1
+      def initialize(id, options)
         @id = id
+        @request = Smartdc::Request.new(options)
       end
 
-      def create(params={})
-        request.post('my/machines/' + @id1.to_s + '/metadata/', params)
-      end
-      
-      def read
-        raise ArgumentError unless id
-        request.get('my/machines/' + @id1.to_s + '/metadata/' + id.to_s)
+      def create(raw={})
+        request.post('my/machines/' + @id.to_s + '/metadata/', raw)
       end
 
-      def find(params={})
-        request.get('my/machines/' + @id1.to_s + '/metadata', params)
+      def read(query={})
+        request.get('my/machines/' + @id.to_s + '/metadata', query)
       end
 
-      def delete
-        request.delete('my/machines/' + @id1.to_s + '/metadata/' + id.to_s)
+      def destroy(id=nil)
+        request.del('my/machines/' + @id.to_s + '/metadata/' + id.to_s)
       end
     end
   end

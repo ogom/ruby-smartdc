@@ -5,65 +5,65 @@ require 'smartdc/api/machine/snapshots'
 module Smartdc
   module Api
     class Machines
-      attr_reader :request, :id
+      attr_reader :request
 
-      def initialize(request, id=nil)
-        @request = request
-        @id = id
+      def initialize(options)
+        @options = options
+        @request = Smartdc::Request.new(options)
       end
 
-      def create(params={})
-        request.post('my/machines/', params)
+      def create(raw={})
+        request.post('my/machines/', raw)
       end
       
-      def read
+      def read(id)
         raise ArgumentError unless id
         request.get('my/machines/' + id.to_s)
       end
 
-      def find(params={})
-        request.get('my/machines', params)
+      def all(query={})
+        request.get('my/machines', query)
       end
 
-      def delete
+      def destroy(id)
         raise ArgumentError unless id
-        request.delete('my/machines/' + id.to_s)
+        request.del('my/machines/' + id.to_s)
       end
 
-      def stop
+      def stop(id)
         raise ArgumentError unless id
         request.post('my/machines/' + id.to_s, {'action'=>'stop'})
       end
 
-      def start
+      def start(id)
         raise ArgumentError unless id
         request.post('my/machines/' + id.to_s, {'action'=>'start'})
       end
 
-      def reboot
+      def reboot(id)
         raise ArgumentError unless id 
         request.post('my/machines/' + id.to_s, {'action'=>'reboot'})
       end
 
-      def resize(params={})
+      def resize(id, query={})
         raise ArgumentError unless id
-        params[:action] = 'resize'
-        request.post('my/machines/' + id.to_s, params)
+        query['action'] = 'resize'
+        request.post('my/machines/' + id.to_s, query)
       end
 
-      def tags(_id=nil)
+      def tags(id)
         raise ArgumentError unless id
-        Smartdc::Api::Machine::Tags.new(request, id, _id)
+        Smartdc::Api::Machine::Tags.new(id, @options)
       end
       
-      def metadata(_id=nil)
+      def metadata(id)
         raise ArgumentError unless id
-        Smartdc::Api::Machine::Metadata.new(request, id, _id)
+        Smartdc::Api::Machine::Metadata.new(id, @options)
       end
       
-      def snapshots(_id=nil)
+      def snapshots(id)
         raise ArgumentError unless id
-        Smartdc::Api::Machine::Snapshots.new(request, id, _id)
+        Smartdc::Api::Machine::Snapshots.new(id, @options)
       end
     end
   end

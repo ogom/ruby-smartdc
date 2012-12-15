@@ -7,38 +7,34 @@ require 'smartdc/api/analytics'
 
 module Smartdc
   class Client
-    attr_reader :request
+    attr_reader :options
 
     def initialize(options={})
-      @request ||= Smartdc::Request.new(options)
+      @options ||= options
     end
 
-    def format=(format)
-      @request.format = format
+    def keys()
+      Smartdc::Api::Keys.new(options)
     end
 
-    def keys(id=nil)
-      Smartdc::Api::Keys.new(request, id)
+    def datacenters()
+      Smartdc::Api::Datacenters.new(options)
     end
 
-    def datacenters(id=nil)
-      Smartdc::Api::Datacenters.new(request, id)
+    def datasets()
+      Smartdc::Api::Datasets.new(options)
     end
 
-    def datasets(id=nil)
-      Smartdc::Api::Datasets.new(request, id)
+    def packages()
+      Smartdc::Api::Packages.new(options)
     end
 
-    def packages(id=nil)
-      Smartdc::Api::Packages.new(request, id)
+    def machines()
+    	Smartdc::Api::Machines.new(options)
     end
 
-    def machines(id=nil)
-    	Smartdc::Api::Machines.new(request, id)
-    end
-
-    def analytics(id=nil)
-      Smartdc::Api::Analytics.new(request, id)
+    def analytics()
+      Smartdc::Api::Analytics.new(options)
     end
   end
 end

@@ -1,87 +1,50 @@
-# smartdc
+SmartDC
+=======
 
-ruby-smartdc is a ruby client library for interacting with the Joyent SmartDataCenter CloudApi. 
+SmartDC is Joyent's [SmartDataCenter](http://www.joyent.com/software/smartdatacenter) client and SmartDataCenter Command Line Interface. 
+[Joyent CloudAPI Documentation](http://apidocs.joyent.com/sdcapidoc/cloudapi/). 
 
+## Features
+* Response content is Hash.
+* Debug output Request and Response.
+* Output style is Table or JSON.
+* CLI is sub command style.
 
 ## Installation
-
-    gem install smartdc
-
+```
+gem install smartdc
+```
 
 ## Usage
 
-Get Started with SmartDataCenter [here](http://www.slideshare.net/ogom_/smartdc-by-ruby-10047222).
-
-
 ### CLI
-
-    $ sdc-setup https://example.com
-    version:[~6.5] 
-    Username (login): auth_user
-    Password: auth_pass
-    Successful configuration.
-
-    $ sdc-listdatacenters 
-    {
-      "example": "https://example.com"
-    }
-
+```
+$ sdc init
+$ sdc key add key_name ~/.ssh/id_rsa.pub 
+$ sdc dataset ls
+$ sdc package ls
+$ sdc machine add -e DATASET_URN -p PACKAGE_NAME
+$ sdc machine ls
+$ sdc machine ls --raw
+```
 
 ### Program
 
-Connect and Machine find.
+```
+require 'smartdc'
 
-    require 'smartdc'
+client = Smartdc.new({
+  hostname: 'example.com',
+  username: 'auth_user',
+  password: 'auth_pass',
+  version: '~6.5'
+})
 
-    config = {
-      "url"      => "https://example.com/",
-      "version"  => "~6.5",
-      "username" => "auth_user",
-      "password" => "auth_pass"
-    }
+client.machines.all.content.each do |machine|
+  p "#{machine['name']} is state at #{machine['state']}." 
+  #client.machines.stop(machine['id']).status
+end
+```
 
-    client = Smartdc.new(config)
-    machines = client.machines.find
-    machines.each do |machine|
-      puts "machines   id: #{machine.id}, state: #{machine.state}"
-      machine = client.machines(machine.id)
-      
-      puts 'Stop the machine.'
-      machine.stop
-      8.times do |i|
-        puts "machine(#{i}) id: #{machine.read.id}, state: #{machine.read.state}"
-        break if machine.read.state == 'stopped'
-        sleep i
-      end
-      
-      puts 'Start the machine.'
-      machine.start
-      8.times do |i|
-        puts "machine(#{i}) id: #{machine.read.id}, state: #{machine.read.state}"
-        break if machine.read.state == 'running'
-        sleep i
-      end
-      puts
-    end
-
-
-Format of the return value.
-
-    client = Smartdc.new(config)
-    
-    # Type of a variable to mash. (Default)
-    client.format = 'mash'
-    puts client.datacenters.find #=> #<Hashie::Mash example="example.com">
-
-    # Type of a variable to hash.
-    client.format = 'hash'
-    puts client.datacenters.find #=> {"example"=>"https://example.com"}
-
-    # Type of a variable to json.
-    client.format = 'json'
-    puts client.datacenters.find #=> {"example": "https://example.com"}
-
-
-## Copyright
-
-Copyright (c) 2012 ogom. See LICENSE.md for further details.
+## License 
+* MIT

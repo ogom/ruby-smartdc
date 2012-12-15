@@ -1,7 +1,7 @@
 require 'faraday'
 
 module Smartdc
-  module Response
+  class Response
     class RaiseError < Faraday::Response::Middleware
       def on_complete(env)
         case env[:status]

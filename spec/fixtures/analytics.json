@@ -1,0 +1,26 @@
+[
+  {
+    "module": "syscall",
+    "stat": "syscalls",
+    "predicate": {},
+    "decomposition": [],
+    "value-dimension": 1,
+    "value-arity": "scalar",
+    "enabled": true,
+    "retention-time": 600,
+    "idle-max": 3600,
+    "transformations": {},
+    "nsources": 1,
+    "granularity": 1,
+    "persist-data": false,
+    "crtime": 1355245051112,
+    "value-scope": "interval",
+    "id": "3",
+    "uris": [
+      {
+        "uri": "/ogom/analytics/instrumentations/3/value/raw",
+        "name": "value_raw"
+      }
+    ]
+  }
+]

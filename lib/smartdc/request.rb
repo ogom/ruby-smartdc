@@ -1,88 +1,78 @@
-require 'hashie/mash'
-require 'multi_json'
+require 'json'
 require 'faraday'
-require 'smartdc/response/mashify'
-require 'smartdc/response/parse_json'
 require 'smartdc/response/raise_error'
 
 module Smartdc
   class Request
-    attr_reader :url, :version, :username, :password
-    attr_accessor :format
-
     def initialize(options)
-      @url = options['url']
-      @version = options['version']
-      @username = options['username']
-      @password = options['password']
-      @format = options['format']
+      @options = options
     end
 
-    def get(path, params={})
-      request(:get, path, params)
+    def get(path, query={})
+      request(:get, path, query, {})
     end
 
-    def post(path, params={})
-      request(:post, path, params)
+    def post(path, raw={})
+      request(:post, path, {}, raw)
     end
 
-    def put(path, params={})
-      request(:put, path, params)
+    def put(path, raw={})
+      request(:put, path, {}, raw)
     end
 
-    def delete(path, params={})
-      request(:delete, path, params)
+    def del(path, query={})
+      request(:delete, path, query, {})
+    end
+
+    def request(method, path, query={}, raw={})
+      res = connection.send(method) do |req|
+        case method
+        when :get
+          req.url path, query
+        when :post, :put
+          req.path = path
+          req.body = raw.to_json unless raw.empty?
+        when :delete
+          req.url path
+        end
+
+        if @options[:debug]
+          print 'Request: '
+          puts "method: #{req.method.to_s}"
+          puts "path: #{req.path}"
+          puts "params: #{req.params}"
+          puts "headers: #{req.headers}"
+          puts "body: #{req.body}"
+        end
+      end
+
+      if @options[:debug]
+        print 'Response: '
+        puts "status: #{res.status}"
+        puts "headers: #{res.headers}"
+        puts "body: #{res.body}"
+      end
+
+      Smartdc::Response.new(res)
     end
 
   private
-    def request(method, path, params={})
-      response = connection.send(method) do |request|
-        case method
-        when :get
-          request.url path, params
-        when :post, :put
-          request.path = path
-          request.body = MultiJson.encode(params) unless params.empty?
-        when :delete
-          request.url path
-          request.headers = {'content-length'=>'0'}  
-        end
-      end
-      response.body
-    end
 
     def connection
-      case format
-      when 'mash', nil
-        middleware = 3
-      when 'hash'
-        middleware = 2
-      when 'json'
-        middleware = 1
-      else
-        middleware = 0
-      end
-
       options = {
-        :url => url,
+        :url => 'https://' + @options[:hostname],
         :ssl => {:verify => false},
         :headers => {
-          'authorization' => basic_auth(username, password),
-          'X-Api-Version' => version
+          'Content-Type'=>'application/json',
+          'X-Api-Version' => @options[:version]
         }
       }
 
       Faraday.new(options) do |builder|
-        builder.use Faraday::Request::JSON
-        builder.use Smartdc::Response::Mashify   if middleware > 2
-        builder.use Smartdc::Response::ParseJson if middleware > 1
-        builder.use Smartdc::Response::RaiseError
+        builder.request :basic_auth, @options[:username], @options[:password]
+        # builder.use Smartdc::Response::RaiseError
         builder.adapter Faraday.default_adapter
       end
-    end
-
-    def basic_auth(username, password)
-      'Basic ' + ["#{username}:#{password}"].pack('m').delete("\r\n")
     end
   end
 end

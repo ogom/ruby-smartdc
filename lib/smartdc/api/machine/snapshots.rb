@@ -1,34 +1,34 @@
 module Smartdc::Api
   module Machine
     class Snapshots
-      attr_reader :request, :id
+      attr_reader :request
 
-      def initialize(request, id1, id)
-        @request = request
-        @id1 = id1
+      def initialize(id, options)
         @id = id
+        @request = Smartdc::Request.new(options)
       end
 
-      def create(params={})
-        request.post('my/machines/' + @id1.to_s + '/snapshots/', params)
+      def create(raw={})
+        request.post('my/machines/' + @id.to_s + '/snapshots/', raw)
       end
-      
-      def start
+
+      def read(id)
         raise ArgumentError unless id
-        request.post('my/machines/' + @id1.to_s + '/snapshots/' + id.to_s)
+        request.get('my/machines/' + @id.to_s + '/snapshots/' + id.to_s)
       end
 
-      def read
+      def all(query={})
+        request.get('my/machines/' + @id.to_s + '/snapshots', query)
+      end
+
+      def destroy(id)
         raise ArgumentError unless id
-        request.get('my/machines/' + @id1.to_s + '/snapshots/' + id.to_s)
+        request.del('my/machines/' + @id.to_s + '/snapshots/' + id.to_s)
       end
 
-      def find(params={})
-        request.get('my/machines/' + @id1.to_s + '/snapshots', params)
-      end
-
-      def delete
-        request.delete('my/machines/' + @id1.to_s + '/snapshots/' + id.to_s)
+      def start(id)
+        raise ArgumentError unless id
+        request.post('my/machines/' + @id.to_s + '/snapshots/' + id.to_s)
       end
     end
   end
