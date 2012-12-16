@@ -35,7 +35,7 @@ $ sdc machine ls
 
 
 #### Output JSON
-Raw response body is JSON.
+JSON is set to body of response.
 
 ```
 $ sdc machine ls --raw
