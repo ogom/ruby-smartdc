@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ogom"]
-  s.date = "2012-12-15"
+  s.date = "2012-12-16"
   s.description = "SmartDataCenter client and SmartDataCenter Command Line Interface."
   s.email = "ogom@hotmail.co.jp"
   s.executables = ["sdc"]
@@ -18,8 +18,10 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
+    ".travis.yml",
     "Gemfile",
     "README.md",
+    "Rakefile",
     "VERSION",
     "bin/sdc",
     "lib/cli_helper.rb",
@@ -76,14 +78,14 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<faraday>, ["~> 0.8"])
       s.add_runtime_dependency(%q<thor>, ["~> 0.16"])
       s.add_runtime_dependency(%q<terminal-table>, ["~> 1.4"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.2"])
+      s.add_development_dependency(%q<bundler>, ["~> 1.1"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.8"])
       s.add_development_dependency(%q<rspec>, ["~> 2.12"])
     else
       s.add_dependency(%q<faraday>, ["~> 0.8"])
       s.add_dependency(%q<thor>, ["~> 0.16"])
       s.add_dependency(%q<terminal-table>, ["~> 1.4"])
-      s.add_dependency(%q<bundler>, ["~> 1.2"])
+      s.add_dependency(%q<bundler>, ["~> 1.1"])
       s.add_dependency(%q<jeweler>, ["~> 1.8"])
       s.add_dependency(%q<rspec>, ["~> 2.12"])
     end
@@ -91,7 +93,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<faraday>, ["~> 0.8"])
     s.add_dependency(%q<thor>, ["~> 0.16"])
     s.add_dependency(%q<terminal-table>, ["~> 1.4"])
-    s.add_dependency(%q<bundler>, ["~> 1.2"])
+    s.add_dependency(%q<bundler>, ["~> 1.1"])
     s.add_dependency(%q<jeweler>, ["~> 1.8"])
     s.add_dependency(%q<rspec>, ["~> 2.12"])
   end

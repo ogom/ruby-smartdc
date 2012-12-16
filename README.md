@@ -1,7 +1,7 @@
-SmartDC
+smartdc
 =======
 
-SmartDC is Joyent's [SmartDataCenter](http://www.joyent.com/software/smartdatacenter) client and SmartDataCenter Command Line Interface.  
+smartdc is Joyent's [SmartDataCenter](http://www.joyent.com/software/smartdatacenter) client and SmartDataCenter Command Line Interface.  
 [Joyent CloudAPI Documentation](http://apidocs.joyent.com/sdcapidoc/cloudapi/).  
 
 ## Features
@@ -54,6 +54,7 @@ $ rake spec
 ```
 
 [![Build Status](https://travis-ci.org/ogom/ruby-smartdc.png?branch=master)](https://travis-ci.org/ogom/ruby-smartdc)
+
 
 ## License 
 * MIT
