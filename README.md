@@ -4,13 +4,17 @@ smartdc
 smartdc is Joyent's [SmartDataCenter](http://www.joyent.com/software/smartdatacenter) client and SmartDataCenter Command Line Interface.  
 [Joyent CloudAPI Documentation](http://apidocs.joyent.com/sdcapidoc/cloudapi/).  
 
+
 ## Features
+
 * Response content is Hash.
 * Debug output Request and Response.
 * Output style is Table or JSON.
 * CLI is sub command style.
 
+
 ## Installation
+
 ```
 gem install smartdc
 ```
@@ -18,6 +22,8 @@ gem install smartdc
 ## Usage
 
 ### CLI
+Sets up an account.
+
 ```
 $ sdc init
 $ sdc key add key_name ~/.ssh/id_rsa.pub 
@@ -25,10 +31,30 @@ $ sdc dataset ls
 $ sdc package ls
 $ sdc machine add -e DATASET_URN -p PACKAGE_NAME
 $ sdc machine ls
+```
+
+
+#### Output JSON
+Raw response body is JSON.
+
+```
 $ sdc machine ls --raw
 ```
 
+
+#### Machine use
+Set to config the Machine uuid.
+
+```
+$ sdc machine ls
+$ sdc machine get UUID
+$ sdc machine use UUID
+$ sdc machine get
+```
+
+
 ### Program
+Hash is set to content of response.
 
 ```
 require 'smartdc'
@@ -48,7 +74,9 @@ client.machines.all.content.each do |machine|
 end
 ```
 
+
 ## Tests
+
 ```
 $ rake spec
 ```
@@ -57,4 +85,5 @@ $ rake spec
 
 
 ## License 
+
 * MIT
