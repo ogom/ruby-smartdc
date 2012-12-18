@@ -207,15 +207,29 @@ module CLI
     end
 
     desc 'stop [UUID]', 'Allows you to shut down a machine.'
+    method_option :all, type: :boolean, desc: 'All machine stop.'
     def stop(uuid=nil)
-      uuid ||= config[:use_machine]
-      output sdc(config(options)).machines.stop(uuid), {message: "Machine #{uuid} stoped"}.merge(options)
+      if options.all
+        sdc(config(options)).machines.all({state: 'running'}).content.each do |machine|
+          output sdc(config(options)).machines.stop(machine['id']), {message: "Machine #{machine['id']} stoped"}.merge(options)
+        end
+      else
+        uuid ||= config[:use_machine]
+        output sdc(config(options)).machines.stop(uuid), {message: "Machine #{uuid} stoped"}.merge(options)
+      end
     end
 
     desc 'start [UUID]', 'Allows you to boot up a machine.'
+    method_option :all, type: :boolean, desc: 'All machine start.'
     def start(uuid=nil)
-      uuid ||= config[:use_machine]
-      output sdc(config(options)).machines.start(uuid), {message: "Machine #{uuid} started"}.merge(options)
+      if options.all
+        sdc(config(options)).machines.all({state: 'stopped'}).content.each do |machine|
+          output sdc(config(options)).machines.start(machine['id']), {message: "Machine #{machine['id']} started"}.merge(options)
+        end
+      else
+        uuid ||= config[:use_machine]
+        output sdc(config(options)).machines.start(uuid), {message: "Machine #{uuid} started"}.merge(options)
+      end
     end
 
     desc 'reboot [UUID]', 'Allows you to reboot a machine.'
