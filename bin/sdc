@@ -115,9 +115,12 @@ module CLI
     class_option :uuid, type: :string, aliases: '-u', desc: 'Machine uuid'
 
     desc 'ls', 'Returns the complete set of metadata associated with this machine.'
+    method_option :credentials, type: :boolean, aliases: '-c', desc: 'Whether or not to return machine credentials.'
     def ls
       uuid = options.uuid.nil? ? config[:use_machine] : options.uuid
-      output sdc(config(opt(ARGV, options))).machines.metadata(uuid).read, {table: :v}.merge(opt(ARGV, options))
+      res = sdc(config(opt(ARGV, options))).machines.metadata(uuid).read(options)
+      res.body = res.content['credentials'].to_json if options.credentials
+      output res, {table: :v}.merge(opt(ARGV, options))
     end
 
     desc 'add [KEY] [VALUE]', 'Allows you to update the metadata for a given machine.'
@@ -285,7 +288,7 @@ module CLI
     end
 
     desc 'get [ID]', 'Retrieves the configuration for an instrumentation.'
-    method_option :value, type: :boolean, aliases: '-v', desc: 'All metadata.'
+    method_option :value, type: :boolean, aliases: '-v', desc: 'Analytic value.'
     def get(id)
       if options[:value]
         output sdc(config(options)).analytics.value(id), {table: :v}.merge(options)

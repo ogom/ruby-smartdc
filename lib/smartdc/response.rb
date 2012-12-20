@@ -1,6 +1,7 @@
 module Smartdc
   class Response
-    attr_reader :status, :headers, :body
+    attr_reader :status, :headers
+    attr_accessor :body
 
     def initialize(response)
       @status = response.status
