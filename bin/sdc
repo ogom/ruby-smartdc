@@ -115,11 +115,11 @@ module CLI
     class_option :uuid, type: :string, aliases: '-u', desc: 'Machine uuid'
 
     desc 'ls', 'Returns the complete set of metadata associated with this machine.'
-    method_option :credentials, type: :boolean, aliases: '-c', desc: 'Whether or not to return machine credentials.'
+    method_option :credentials, type: :boolean, aliases: '-c', desc: 'Only output the machine credentials.'
     def ls
       uuid = options.uuid.nil? ? config[:use_machine] : options.uuid
       res = sdc(config(opt(ARGV, options))).machines.metadata(uuid).read(options)
-      res.body = res.content['credentials'].to_json if options.credentials
+      res.content = res.content['credentials'].to_json if options.credentials
       output res, {table: :v}.merge(opt(ARGV, options))
     end
 
@@ -186,7 +186,7 @@ module CLI
     method_option :type, type: :string, aliases: '-t', desc: 'virtualmachine or smartmachine'
     method_option :state, type: :string, aliases: '-s', desc: 'running or stopped'
     def ls
-      include = [:id, :name, :dataset, :state]
+      include = [:id, :dataset, :primaryIp, :state]
       output sdc(config(options)).machines.all(options), {table: :h, include: include}.merge(options)
     end
 

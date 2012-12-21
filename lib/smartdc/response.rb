@@ -1,24 +1,24 @@
 module Smartdc
   class Response
-    attr_reader :status, :headers
-    attr_accessor :body
+    attr_reader :status, :headers, :body, :content
 
     def initialize(response)
       @status = response.status
       @headers = response.headers
       @body = response.body
+      self.content = @body
     end
 
-    def content
-      case @body
+    def content=raw
+      case raw
       when nil, ''
-        nil
+        @content = nil
       when 'true'
-        true
+        @content = true
       when 'false'
-        false
+        @content = false
       else
-        JSON.parse(@body)
+        @content = JSON.parse(raw)
       end
     end
   end

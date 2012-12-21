@@ -55,52 +55,43 @@ def output(response, options={})
 end
 
 def horizontal(content, options={})
-  if content.empty?
-    nil
-  else
-    options[:include] ||= []
-    options[:exclude] ||= []
-    rows = []
-    headings = nil
-      
-    content.each do |row|
-      options[:exclude].each do |col|
-        row.delete(col.to_s)
-      end
-
-      if !options[:include].empty?
-        cols = {}
-        options[:include].each do |col|
-          cols[col.to_s] = row[col.to_s] if row.key?(col.to_s)
-        end
-        row = cols
-      end
-
-      rows << row.values
-      headings = row.keys if headings.nil?
+  options[:include] ||= []
+  options[:exclude] ||= []
+  rows = []
+  headings = nil
+    
+  content.each do |row|
+    options[:exclude].each do |col|
+      row.delete(col.to_s)
     end
 
-    Terminal::Table.new :headings => headings, :rows => rows
+    if !options[:include].empty?
+      cols = {}
+      options[:include].each do |col|
+        cols[col.to_s] = row[col.to_s] if row.key?(col.to_s)
+      end
+      row = cols
+    end
+
+    rows << row.values
+    headings = row.keys if headings.nil?
   end
+
+  Terminal::Table.new :headings => headings, :rows => rows if !content.empty?
 end
 
 def vertical(content, options={})
-  if content.empty?
-    nil
-  else
-    options[:exclude] ||= []
-
-    options[:exclude].each do |col|
-      content.delete(col.to_s)
-    end
-
-    rows = []
-    content.to_a.each do |row|
-      rows << row
-    end
-    
-    Terminal::Table.new :headings => ['key','value'], :rows => rows
+  options[:exclude] ||= []
+  options[:exclude].each do |col|
+    content.delete(col.to_s)
   end
+
+  rows = []
+  content.to_a.each do |row|
+    rows << row
+  end
+  
+  Terminal::Table.new :headings => ['key','value'], :rows => rows if !content.empty?
 end
 
 def describe(name, content, options)
