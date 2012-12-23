@@ -64,16 +64,13 @@ module Smartdc
         :url => 'https://' + @options[:hostname],
         :ssl => {:verify => false},
         :headers => {
+          :date => Time.now.gmtime.to_s,
           'content-type'=>'application/json',
           'x-api-version' => @options[:version]
         }
       }
 
-      if @options[:rsa_path]
-        options[:headers][:date] = Time.now.gmtime.to_s
-        @options[:date] = options[:headers][:date] 
-        options[:headers][:authorization] = Smartdc::Auth::sign(@options)
-      end
+      options[:headers][:authorization] = Smartdc::Auth::sign(options, @options) if @options[:rsa_path] && !@options[:password]
 
       Faraday.new(options) do |builder|
         builder.request :basic_auth, @options[:username], @options[:password] if @options[:password]

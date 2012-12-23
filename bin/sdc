@@ -328,8 +328,31 @@ module CLI
   class Main < Thor
     desc 'init', 'Sets up an account on a datacenter for use with this CLI.'
     def init
-      Configure.make
-      puts sdc(config).datacenters.all.status == 200 ? 'Successful configuration.' : 'Failed Configuration.'
+      message = ['Successful configuration.', 'Failed Configuration.']
+      state = 0
+
+      Configure.init
+      res = sdc(config).keys.all
+      if res.status == 200
+        rsa_path = Configure.key(res.content)
+        config = Configure.read
+        if rsa_path 
+          raw = {name: config[:use_key], key: File.read(rsa_path)}
+          res = sdc(config).keys.create(raw)
+          state = 1 if res.status != 201
+          config.delete(:password)  
+        else
+          config.delete(:password)
+          res = sdc(config).keys.read(config[:use_key])
+          state = 1  if res.status != 200
+        end
+        Configure.write config
+      else
+        state = 1
+      end
+
+      msg = res.content['message'] + '.' if state == 1
+      puts "#{message[state]} #{msg}"
     end
 
     register(Key, 'key', 'key [COMMAND]', 'SSH key')
