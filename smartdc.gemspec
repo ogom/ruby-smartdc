@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "smartdc"
-  s.version = "1.0.1"
+  s.version = "1.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["ogom"]
-  s.date = "2012-12-16"
+  s.date = "2012-12-23"
   s.description = "SmartDataCenter client and SmartDataCenter Command Line Interface."
   s.email = "ogom@hotmail.co.jp"
   s.executables = ["sdc"]
@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
     "lib/smartdc/api/machine/tags.rb",
     "lib/smartdc/api/machines.rb",
     "lib/smartdc/api/packages.rb",
+    "lib/smartdc/auth.rb",
     "lib/smartdc/client.rb",
     "lib/smartdc/error.rb",
     "lib/smartdc/request.rb",
