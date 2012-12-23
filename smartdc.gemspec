@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
     "lib/smartdc/api/machine/tags.rb",
     "lib/smartdc/api/machines.rb",
     "lib/smartdc/api/packages.rb",
+    "lib/smartdc/auth.rb",
     "lib/smartdc/client.rb",
     "lib/smartdc/error.rb",
     "lib/smartdc/request.rb",

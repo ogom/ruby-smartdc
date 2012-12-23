@@ -24,10 +24,21 @@ module Configure
     end
   end
 
-  def self.make
+  def self.init
     config = self.read
 
-    puts
+    output = <<EOS
+              .
+              |
+ .-.  .--. .-.|  .-.
+: + : `--.(   | (   
+ `-'  `--' `-'`- `-'
+      Smart Data Center Command Line Interface
+      http://apidocs.joyent.com/sdcapidoc/cloudapi/
+      
+EOS
+    puts output
+
     config[:hostname] ||= 'api.example.com'
     print "Hostname (#{config[:hostname]}): "
     stdin = STDIN.gets.chomp.to_s
@@ -57,6 +68,47 @@ module Configure
     puts
 
     self.write config
+  end
+
+  def self.key(keys)
+    config = self.read
+    use_key = 0
+    rsa_path = nil
+
+    puts "SSH Key Settings:"
+    keys.each_with_index do |key, i|
+      puts "#{i+1}) #{key['name']}"
+    end
+
+    if !keys.empty?
+      puts "0) Add new key"
+      print "Select SSH key: "
+      stdin = STDIN.gets.chomp.to_s
+      use_key = stdin.to_i if !stdin.empty?
+    end
+
+    if use_key > 0
+      config[:use_key] = keys[use_key-1]['name']
+    else
+      config[:use_key] ||= 'id_rsa'
+      print "Key name (#{config[:use_key]}): "
+      stdin = STDIN.gets.chomp.to_s
+      config[:use_key] = stdin if !stdin.empty?        
+
+      rsa_path = File.join(ENV["HOME"], '/.ssh/id_rsa.pub')
+      print "Public key path (#{rsa_path}): "
+      stdin = STDIN.gets.chomp.to_s
+      rsa_path = stdin if !stdin.empty?
+    end
+
+    config[:rsa_path] ||= File.join(ENV["HOME"], '/.ssh/id_rsa')
+    print "Private key path (#{config[:rsa_path]}): "
+    stdin = STDIN.gets.chomp.to_s
+    config[:rsa_path] = stdin if !stdin.empty?
+    puts
+
+    self.write config
+    rsa_path
   end
 
   private

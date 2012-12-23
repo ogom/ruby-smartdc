@@ -1,6 +1,15 @@
 smartdc
 =======
 
+```
+              .
+              |
+ .-.  .--. .-.|  .-.
+: + : `--.(   | (   
+ `-'  `--' `-'`- `-'
+
+```
+
 smartdc is Joyent's [SmartDataCenter](http://www.joyent.com/software/smartdatacenter) client and SmartDataCenter Command Line Interface.  
 [Joyent CloudAPI Documentation](http://apidocs.joyent.com/sdcapidoc/cloudapi/).  
 
@@ -22,14 +31,13 @@ gem install smartdc
 ## Usage
 
 ### CLI
-Sets up an account.
+Invoke interactive configuration.
 
 ```
 $ sdc init
-$ sdc key add key_name ~/.ssh/id_rsa.pub 
 $ sdc dataset ls
 $ sdc package ls
-$ sdc machine add -e DATASET_URN -p PACKAGE_NAME
+$ sdc machine add NAME -e DATASET_URN -p PACKAGE_NAME
 $ sdc machine ls
 ```
 

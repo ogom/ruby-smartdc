@@ -1,6 +1,7 @@
 require 'json'
 require 'faraday'
-require 'smartdc/response/raise_error'
+require 'smartdc/auth'
+#require 'smartdc/response/raise_error'
 
 module Smartdc
   class Request
@@ -25,6 +26,7 @@ module Smartdc
     end
 
     def request(method, path, query={}, raw={})
+      path = path.gsub(/^my/, @options[:username])
       res = connection.send(method) do |req|
         case method
         when :get
@@ -63,13 +65,16 @@ module Smartdc
         :url => 'https://' + @options[:hostname],
         :ssl => {:verify => false},
         :headers => {
-          'Content-Type'=>'application/json',
-          'X-Api-Version' => @options[:version]
+          :date => Time.now.gmtime.to_s,
+          'content-type'=>'application/json',
+          'x-api-version' => @options[:version]
         }
       }
 
+      options[:headers][:authorization] = Smartdc::Auth::sign(options, @options) if @options[:rsa_path] && !@options[:password]
+
       Faraday.new(options) do |builder|
-        builder.request :basic_auth, @options[:username], @options[:password]
+        builder.request :basic_auth, @options[:username], @options[:password] if @options[:password]
         # builder.use Smartdc::Response::RaiseError
         builder.adapter Faraday.default_adapter
       end
