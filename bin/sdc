@@ -8,6 +8,15 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'cli_helper'
 
 module CLI
+  def self.ip(uuid)
+    res = sdc(config).machines.read(uuid)
+    if res.status == 200
+      res.content['primaryIp']
+    else
+      uuid
+    end
+  end
+
   class Base < Thor
     class_option :debug, type: :boolean, aliases: '-d', desc: 'Debug output'
     class_option :raw, type: :boolean, aliases: '-r', desc: 'Raw response body'
@@ -33,7 +42,7 @@ module CLI
 
     desc 'del [NAME]', 'Deletes an SSH key by name.'
     def del(name)
-      output sdc(config(options)).keys.destroy(name), {message: "Key #{name} deleted"}.merge(options)
+      output sdc(config(options)).keys.destroy(name), {message: "Key #{name} deleted."}.merge(options)
     end
   end
 
@@ -101,11 +110,11 @@ module CLI
       uuid = options.uuid.nil? ? config[:use_machine] : options.uuid
       if key.nil? 
         if options.all
-          msg = "Machine #{uuid} all tags deleted"
+          msg = "Machine #{CLI.ip(uuid)} all tags deleted."
           output sdc(config(opt(ARGV, options))).machines.tags(uuid).destroy, {message: msg}.merge(opt(ARGV, options))        
         end
       else
-        msg = "Machine #{uuid} tag #{key} deleted"
+        msg = "Machine #{CLI.ip(uuid)} tag #{key} deleted."
         output sdc(config(opt(ARGV, options))).machines.tags(uuid).destroy(key), {message: msg}.merge(opt(ARGV, options))        
       end
     end
@@ -142,11 +151,11 @@ module CLI
       uuid = options.uuid.nil? ? config[:use_machine] : options.uuid
       if key.nil? 
         if options.all
-          msg = "Machine #{uuid} all metadata deleted"
+          msg = "Machine #{CLI.ip(uuid)} all metadata deleted."
           output sdc(config(opt(ARGV, options))).machines.metadata(uuid).destroy, {message: msg}.merge(opt(ARGV, options))        
         end
       else
-        msg = "Machine #{uuid} metadata #{key} deleted"
+        msg = "Machine #{CLI.ip(uuid)} metadata #{key} deleted."
         output sdc(config(opt(ARGV, options))).machines.metadata(uuid).destroy(key), {message: msg}.merge(opt(ARGV, options))
       end
     end
@@ -176,14 +185,14 @@ module CLI
     desc 'del [NAME]', 'Deletes the specified snapshot of a machine.'
     def del(name)
       uuid = options.uuid.nil? ? config[:use_machine] : options.uuid
-      msg = "Machine #{uuid} snapshots #{options[:name]} deleted"
+      msg = "Machine #{CLI.ip(uuid)} snapshots #{name} deleted."
       output sdc(config(opt(ARGV, options))).machines.snapshots(uuid).destroy(name), {message: msg}.merge(opt(ARGV, options))
     end
 
     desc 'start [NAME]', 'Starts a stopped machine from the referenced snapshot.'
     def start(name)
       uuid = options.uuid.nil? ? config[:use_machine] : options.uuid
-      msg = "Machine #{uuid} snapshots #{options[:key]} started"
+      msg = "Machine #{CLI.ip(uuid)} snapshots #{name} started."
       output sdc(config(opt(ARGV, options))).machines.snapshots(uuid).start(name), {message: msg}.merge(opt(ARGV, options))
     end
   end
@@ -213,7 +222,7 @@ module CLI
     desc 'del [UUID]', 'Allows you to completely destroy a machine.'
     def del(uuid=nil)
       uuid ||= config[:use_machine]
-      output sdc(config(options)).machines.destroy(uuid), {message: "Machine #{uuid} deleted"}.merge(options)
+      output sdc(config(options)).machines.destroy(uuid), {message: "Machine #{CLI.ip(uuid)} deleted."}.merge(options)
     end
 
     desc 'stop [UUID]', 'Allows you to shut down a machine.'
@@ -221,11 +230,11 @@ module CLI
     def stop(uuid=nil)
       if options.all
         sdc(config(options)).machines.all({state: 'running'}).content.each do |machine|
-          output sdc(config(options)).machines.stop(machine['id']), {message: "Machine #{machine['id']} stoped"}.merge(options)
+          output sdc(config(options)).machines.stop(machine['id']), {message: "Machine #{machine['primaryIp']} stoped."}.merge(options)
         end
       else
         uuid ||= config[:use_machine]
-        output sdc(config(options)).machines.stop(uuid), {message: "Machine #{uuid} stoped"}.merge(options)
+        output sdc(config(options)).machines.stop(uuid), {message: "Machine #{CLI.ip(uuid)} stoped."}.merge(options)
       end
     end
 
@@ -234,25 +243,25 @@ module CLI
     def start(uuid=nil)
       if options.all
         sdc(config(options)).machines.all({state: 'stopped'}).content.each do |machine|
-          output sdc(config(options)).machines.start(machine['id']), {message: "Machine #{machine['id']} started"}.merge(options)
+          output sdc(config(options)).machines.start(machine['id']), {message: "Machine #{machine['primaryIp']} started."}.merge(options)
         end
       else
         uuid ||= config[:use_machine]
-        output sdc(config(options)).machines.start(uuid), {message: "Machine #{uuid} started"}.merge(options)
+        output sdc(config(options)).machines.start(uuid), {message: "Machine #{CLI.ip(uuid)} started."}.merge(options)
       end
     end
 
     desc 'reboot [UUID]', 'Allows you to reboot a machine.'
     def reboot(uuid=nil)
       uuid ||= config[:use_machine]
-      output sdc(config(options)).machines.reboot(uuid), {message: "Machine #{uuid} reboot"}.merge(options)
+      output sdc(config(options)).machines.reboot(uuid), {message: "Machine #{CLI.ip(uuid)} reboot."}.merge(options)
     end
 
     desc 'resize [UUID]', 'Allows you to resize a SmartMachine.'
     method_option :package, type: :string, aliases: '-p', desc: 'Use a package name returned from ListPackages'
     def resize(uuid=nil)
       uuid ||= config[:use_machine]
-      output sdc(config(options)).machines.resize(uuid, {}.merge(options)), {message: "Machine #{uuid} resize"}.merge(options)
+      output sdc(config(options)).machines.resize(uuid, {}.merge(options)), {message: "Machine #{CLI.ip(uuid)} resize."}.merge(options)
     end
 
     desc 'use [UUID]', 'Use machine.'
