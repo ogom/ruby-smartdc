@@ -26,6 +26,7 @@ module Smartdc
     end
 
     def request(method, path, query={}, raw={})
+      path = path.gsub(/^my/, @options[:username])
       res = connection.send(method) do |req|
         case method
         when :get
