@@ -89,8 +89,8 @@ module CLI
       output sdc(config(opt(ARGV, options))).machines.tags(uuid).read(key), {'raw' => true}.merge(opt(ARGV, options))
     end
 
-    desc 'add [KEY] [VALUE]', 'Allows you to add additional tags, other than those set at provisioning time.'
-    def add(key, value)
+    desc 'set [KEY] [VALUE]', 'Allows you to set the tags for a given machine.'
+    def set(key, value)
       uuid = options.uuid.nil? ? config[:use_machine] : options.uuid
       output sdc(config(opt(ARGV, options))).machines.tags(uuid).create({key => value}), {table: :v}.merge(opt(ARGV, options))
     end
@@ -111,7 +111,7 @@ module CLI
     end
   end
 
-  class Metadata < CLI::Base
+  class Meta < CLI::Base
     class_option :uuid, type: :string, aliases: '-u', desc: 'Machine uuid'
 
     desc 'ls', 'Returns the complete set of metadata associated with this machine.'
@@ -123,9 +123,16 @@ module CLI
       output res, {table: :v}.merge(opt(ARGV, options))
     end
 
-    desc 'add [KEY] [VALUE]', 'Allows you to update the metadata for a given machine.'
-    def add(key, value)
+    desc 'set [KEY] [VALUE]', 'Allows you to set the metadata for a given machine.'
+    def set(key, value)
       uuid = options.uuid.nil? ? config[:use_machine] : options.uuid
+      output sdc(config(opt(ARGV, options))).machines.metadata(uuid).create({key => value}), {table: :v}.merge(opt(ARGV, options))
+    end
+
+    desc 'push [KEY] [FILE]', 'Push the metadata from file. (user-script or user-data)'
+    def push(key, file)
+      uuid = options.uuid.nil? ? config[:use_machine] : options.uuid
+      value = File.read(file)
       output sdc(config(opt(ARGV, options))).machines.metadata(uuid).create({key => value}), {table: :v}.merge(opt(ARGV, options))
     end
 
@@ -260,7 +267,7 @@ module CLI
     end
 
     register(Tag, 'tag', 'tag [COMMAND]', 'Machine tag')
-    register(Metadata, 'metadata', 'metadata [COMMAND]', 'Machine metadata')
+    register(Meta, 'meta', 'meta [COMMAND]', 'Machine metadata')
     register(Snapshot, 'snapshot', 'snapshot [COMMAND]', 'Machine snapshot')
   end
 

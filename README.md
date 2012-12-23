@@ -37,7 +37,7 @@ Invoke interactive configuration.
 $ sdc init
 $ sdc dataset ls
 $ sdc package ls
-$ sdc machine add -e DATASET_URN -p PACKAGE_NAME
+$ sdc machine add NAME -e DATASET_URN -p PACKAGE_NAME
 $ sdc machine ls
 ```
 
