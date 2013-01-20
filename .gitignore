@@ -1,28 +1,22 @@
-# rcov generated
-coverage
-
-# rdoc generated
-rdoc
-
-# yard generated
-doc
-.yardoc
-
-# bundler
+*.gem
+*.rbc
 .bundle
-
-# jeweler generated
-pkg
-
-# For MacOS:
-.DS_Store
-
-# Gem
+.config
+.yardoc
 Gemfile.lock
+InstalledFiles
+_yardoc
+coverage
+doc/
+lib/bundler/man
+pkg
+rdoc
+spec/reports
+test/tmp
+test/version_tmp
+tmp
 
-# Rspec
+.DS_Store
 .rspec
-
-# Config
 .sdccfg
 .sdccfg.*

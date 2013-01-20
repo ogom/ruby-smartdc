@@ -1,4 +1,4 @@
-require 'pp'
+require 'smartdc/version'
 require 'smartdc/client'
 require 'smartdc/request'
 require 'smartdc/response'
