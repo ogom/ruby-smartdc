@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 group :development do
-  gem "bundler", "~> 1.1"
+  gem "bundler", "~> 1.2"
   gem "rspec", "~> 2.12"
 end
 
