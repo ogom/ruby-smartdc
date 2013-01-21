@@ -20,7 +20,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency(%q<faraday>, ["~> 0.8"])
   gem.add_runtime_dependency(%q<thor>, ["~> 0.16"])
   gem.add_runtime_dependency(%q<terminal-table>, ["~> 1.4"])
-  gem.add_development_dependency(%q<bundler>, ["~> 1.1"])
-  gem.add_development_dependency(%q<jeweler>, ["~> 1.8"])
+  gem.add_development_dependency(%q<bundler>, ["~> 1.2"])
   gem.add_development_dependency(%q<rspec>, ["~> 2.12"])
 end
