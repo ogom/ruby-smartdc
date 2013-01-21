@@ -1,8 +1,10 @@
-source 'https://rubygems.org'
+source :rubygems
+
+gem "rake"
 
 group :development do
-  gem "bundler", "~> 1.2"
-  gem "rspec", "~> 2.12"
+  gem "bundler"
+  gem "rspec"
 end
 
 group :runtime do
