@@ -1,6 +1,8 @@
 smartdc
 =======
 
+[![Gem Version](https://badge.fury.io/rb/smartdc.png)](https://rubygems.org/gems/smartdc) [![Build Status](https://travis-ci.org/ogom/ruby-smartdc.png?branch=master)](https://travis-ci.org/ogom/ruby-smartdc)
+
 ```
               .
               |
@@ -88,9 +90,6 @@ end
 ```
 $ rake spec
 ```
-
-[![Build Status](https://travis-ci.org/ogom/ruby-smartdc.png?branch=master)](https://travis-ci.org/ogom/ruby-smartdc)
-
 
 ## License 
 
