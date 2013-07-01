@@ -12,7 +12,7 @@ smartdc
 
 ```
 
-smartdc is Joyent's [SmartDataCenter](http://www.joyent.com/software/smartdatacenter) client and SmartDataCenter Command Line Interface.  
+smartdc is Joyent's [SmartDataCenter](http://www.joyent.com/software/smartdatacenter) client and SDC Command Line Interface.  
 [Joyent CloudAPI Documentation](http://apidocs.joyent.com/sdcapidoc/cloudapi/).  
 
 

@@ -18,6 +18,6 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_runtime_dependency(%q<faraday>, ["~> 0.8"])
-  gem.add_runtime_dependency(%q<thor>, ["~> 0.16"])
+  gem.add_runtime_dependency(%q<thor>, ["~> 0.18"])
   gem.add_runtime_dependency(%q<terminal-table>, ["~> 1.4"])
 end
