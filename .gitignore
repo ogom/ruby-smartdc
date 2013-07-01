@@ -20,3 +20,5 @@ tmp
 .rspec
 .sdccfg
 .sdccfg.*
+
+sftp-config.json
