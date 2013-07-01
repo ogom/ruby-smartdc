@@ -2,28 +2,25 @@ require 'spec_helper'
 
 describe Smartdc::Api::Datasets do
 
-  before(:all) do
-    @object = Object.new
-    @request = Smartdc::Request
-  end
+  let(:object) {Object.new}
+  let(:request) {Smartdc::Request}
+  let(:datasets) {Smartdc::Api::Datasets.new({})}
 
   describe ".read" do
     it "return a dataset" do
-      @object.stub(:content) {fixture('datasets')[0]}
-      id = @object.content['id']
-      @request.stub_chain(:new, :get).with('my/datasets/' + id) {@object}
+      object.stub(:content) {fixture('datasets')[0]}
+      id = object.content['id']
+      request.stub_chain(:new, :get).with('my/datasets/' + id) {object}
 
-      datasets = Smartdc::Api::Datasets.new({})
       expect(datasets.read(id).content['id']).to eq(id)
     end
   end
 
   describe ".all" do
     it "return some datasets" do
-      @object.stub(:content) {fixture('datasets')}
-      @request.stub_chain(:new, :get).with('my/datasets', {}) {@object}
+      object.stub(:content) {fixture('datasets')}
+      request.stub_chain(:new, :get).with('my/datasets', {}) {object}
 
-      datasets = Smartdc::Api::Datasets.new({})
       expect(datasets.all.content.count).to be > 0
     end
   end
