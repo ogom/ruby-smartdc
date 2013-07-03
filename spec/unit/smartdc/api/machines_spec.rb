@@ -17,7 +17,7 @@ describe Smartdc::Api::Machines do
   end
 
   describe ".read" do
-    it "return a machine" do
+    it "returns a machine" do
       object.stub(:content) {fixture('machines')[0]}
       name = object.content['name']
       request.stub_chain(:new, :get).with('my/machines/' + name) {object}
@@ -27,7 +27,7 @@ describe Smartdc::Api::Machines do
   end
 
   describe ".all" do
-    it "return some machines" do
+    it "returns some machines" do
       object.stub(:content) {fixture('machines')}
       request.stub_chain(:new, :get).with('my/machines', {}) {object}
 
@@ -36,7 +36,7 @@ describe Smartdc::Api::Machines do
   end
 
   describe ".destroy" do
-    it "return true when success" do
+    it "returns true when success" do
       machine = fixture('machines')[0]
       object.stub(:status) {204}
       request.stub_chain(:new, :del).with('my/machines/' + machine['name']) {object}

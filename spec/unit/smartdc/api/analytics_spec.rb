@@ -17,7 +17,7 @@ describe Smartdc::Api::Analytics do
   end
 
   describe ".read" do
-    it "return a instrumentation" do
+    it "returns a instrumentation" do
       object.stub(:content) {fixture('analytics')[0]}
       id = object.content['id']
       request.stub_chain(:new, :get).with('my/analytics/instrumentations/' + id) {object}
@@ -27,7 +27,7 @@ describe Smartdc::Api::Analytics do
   end
 
   describe ".all" do
-    it "return some instrumentations" do
+    it "returns some instrumentations" do
       object.stub(:content) {fixture('analytics')}
       request.stub_chain(:new, :get).with('my/analytics/instrumentations', {}) {object}
 
@@ -36,7 +36,7 @@ describe Smartdc::Api::Analytics do
   end
 
   describe ".destroy" do
-    it "return true when success" do
+    it "returns true when success" do
       analytic = fixture('analytics')[0]
       object.stub(:status) {204}
       request.stub_chain(:new, :del).with('my/analytics/instrumentations/' + analytic['id']) {object}

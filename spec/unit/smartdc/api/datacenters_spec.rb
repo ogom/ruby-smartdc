@@ -7,7 +7,7 @@ describe Smartdc::Api::Datacenters do
   let(:datacenters) {Smartdc::Api::Datacenters.new({})}
 
   describe ".read" do
-    it "return a datacenter" do
+    it "returns a datacenter" do
       object.stub(:content) {fixture('datacenter')}
       name = fixture('datacenters').first[0]
       request.stub_chain(:new, :get).with('my/datacenters/' + name) {object}
@@ -17,7 +17,7 @@ describe Smartdc::Api::Datacenters do
   end
 
   describe ".all" do
-    it "return some datacenter" do
+    it "returns some datacenter" do
       object.stub(:content) {fixture('datacenters')}
       request.stub_chain(:new, :get).with('my/datacenters', {}) {object}
 

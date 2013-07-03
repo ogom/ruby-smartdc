@@ -7,7 +7,7 @@ describe Smartdc::Api::Packages do
   let(:packages) {Smartdc::Api::Packages.new({})}
 
   describe ".read" do
-    it "return a package" do
+    it "returns a package" do
       object.stub(:content) {fixture('packages')[0]}
       name = object.content['name']
       request.stub_chain(:new, :get).with('my/packages/' + name) {object}
@@ -17,7 +17,7 @@ describe Smartdc::Api::Packages do
   end
 
   describe ".all" do
-    it "return some packages" do
+    it "returns some packages" do
       object.stub(:content) {fixture('packages')}
       request.stub_chain(:new, :get).with('my/packages', {}) {object}
 

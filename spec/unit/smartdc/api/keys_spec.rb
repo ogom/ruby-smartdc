@@ -17,7 +17,7 @@ describe Smartdc::Api::Keys do
   end
 
   describe ".read" do
-    it "return a key" do
+    it "returns a key" do
       object.stub(:content) {fixture('keys')[0]}
       name = object.content['name']
       request.stub_chain(:new, :get).with('my/keys/' + name) {object}
@@ -27,7 +27,7 @@ describe Smartdc::Api::Keys do
   end
 
   describe ".all" do
-    it "return some keys" do
+    it "returns some keys" do
       object.stub(:content) {fixture('keys')}
       request.stub_chain(:new, :get).with('my/keys', {}) {object}
 
@@ -36,7 +36,7 @@ describe Smartdc::Api::Keys do
   end
 
   describe ".destroy" do
-    it "return true when success" do
+    it "returns true when success" do
       key = fixture('keys')[0]
       object.stub(:status) {204}
       request.stub_chain(:new, :del).with('my/keys/' + key['name']) {object}

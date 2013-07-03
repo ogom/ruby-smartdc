@@ -7,7 +7,7 @@ describe Smartdc::Api::Datasets do
   let(:datasets) {Smartdc::Api::Datasets.new({})}
 
   describe ".read" do
-    it "return a dataset" do
+    it "returns a dataset" do
       object.stub(:content) {fixture('datasets')[0]}
       id = object.content['id']
       request.stub_chain(:new, :get).with('my/datasets/' + id) {object}
@@ -17,7 +17,7 @@ describe Smartdc::Api::Datasets do
   end
 
   describe ".all" do
-    it "return some datasets" do
+    it "returns some datasets" do
       object.stub(:content) {fixture('datasets')}
       request.stub_chain(:new, :get).with('my/datasets', {}) {object}
 
