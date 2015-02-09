@@ -14,11 +14,7 @@ module Smartdc
       path = File.expand_path(self.rsa_path)
       if File.directory?(path)
         Dir[File.join(path, '*')].each do |path|
-          if File.file?(path)
-            if self.use_key == self.fingerprint(path)
-              return path
-            end
-          end
+          return path if File.file?(path) and self.use_key == self.fingerprint(path)
         end
         return nil
       else
