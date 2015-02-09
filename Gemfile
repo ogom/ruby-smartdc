@@ -1,17 +1,7 @@
-source :rubygems
+source 'https://rubygems.org'
 
-gem "rake"
-
-group :development do
-  gem "bundler"
-end
+gemspec
 
 group :test do
-  gem "rspec", ">= 2.11"
-end
-
-group :runtime do
-  gem "faraday", "~> 0.8"
-  gem "thor", "~> 0.18"
-  gem "terminal-table", "~> 1.4"
+  gem 'rspec'
 end

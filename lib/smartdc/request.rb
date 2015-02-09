@@ -71,10 +71,16 @@ module Smartdc
         }
       }
 
-      options[:headers][:authorization] = Smartdc::Auth::sign(options, @options) if @options[:rsa_path] && !@options[:password]
+      unless @options[:password]
+        auth = Smartdc::Auth.new(@options)
+        options[:headers][:authorization] = auth.signature(options[:headers][:date])
+      end
 
       Faraday.new(options) do |builder|
-        builder.request :basic_auth, @options[:username], @options[:password] if @options[:password]
+        if @options[:password]
+          builder.request :basic_auth, @options[:username], @options[:password]
+        end
+
         # builder.use Smartdc::Response::RaiseError
         builder.adapter Faraday.default_adapter
       end
