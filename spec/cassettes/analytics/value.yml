@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://us-east-1.api.joyentcloud.com/my/analytics/instrumentations/256/value/raw
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Date: ''
+      Authorization: ''
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      X-Api-Version:
+      - "~7.0"
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Api-Version:
+      - 7.2.0
+      Server:
+      - Joyent SmartDataCenter 7.2.0
+      Request-Id: ''
+      Content-Type:
+      - application/json
+      Access-Control-Expose-Headers:
+      - Api-Version, Request-Id, Response-Time
+      Strict-Transport-Security:
+      - max-age=6570000
+      Date: ''
+      X-Request-Id: ''
+      Content-Md5:
+      - TtwIFiY9AJO4E4K4fMPd2w==
+      Access-Control-Allow-Origin:
+      - "*"
+      Response-Time: ''
+      X-Response-Time: ''
+      Connection:
+      - Keep-Alive
+      Access-Control-Allow-Headers:
+      - Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version,
+        Response-Time
+      Access-Control-Allow-Methods:
+      - GET, HEAD
+      Api-Version:
+      - 7.2.0
+      Content-Length:
+      - '210'
+    body:
+      encoding: UTF-8
+      string: '{"value":0,"transformations":{},"start_time":1424000923,"duration":1,"end_time":1424000924,"nsources":1,"minreporting":1,"requested_start_time":1424000923,"requested_duration":1,"requested_end_time":1424000924}'
+    http_version: 
+  recorded_at: Sun, 15 Feb 2015 11:48:46 GMT
+recorded_with: VCR 2.9.3

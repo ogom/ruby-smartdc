@@ -1,48 +1,47 @@
 require 'spec_helper'
 
 describe Smartdc::Api::Analytics do
-
-  let(:object) {Object.new}
-  let(:request) {Smartdc::Request}
-  let(:analytics) {Smartdc::Api::Analytics.new({})}
-
-  describe ".create" do
-    it "creates a instrumentation" do
-      object.stub(:content) {fixture('analytics')[0]}
-      analytic = object.content
-      request.stub_chain(:new, :post).with('my/analytics/instrumentations/', analytic) {object}
-
-      expect(analytics.create(analytic).content['id']).to eq(analytic['id'])
+  describe ".describe_analytics", vcr: { cassette_name: 'analytics/describe' } do
+    it "receives list of analytic describe" do
+      expect(Smartdc.describe_analytics.content.count).to be > 0
     end
   end
 
-  describe ".read" do
-    it "returns a instrumentation" do
-      object.stub(:content) {fixture('analytics')[0]}
-      id = object.content['id']
-      request.stub_chain(:new, :get).with('my/analytics/instrumentations/' + id) {object}
+  describe ".create_analytic", vcr: { cassette_name: 'analytics/create' } do
+    let(:analytic) { { module: 'syscall', stat: 'syscalls' } }
 
-      expect(analytics.read(id).content['id']).to eq(id)
+    it "creates a new analytic" do
+      expect(Smartdc.create_analytic(analytic).content.count).to be > 0
     end
   end
 
-  describe ".all" do
-    it "returns some instrumentations" do
-      object.stub(:content) {fixture('analytics')}
-      request.stub_chain(:new, :get).with('my/analytics/instrumentations', {}) {object}
-
-      expect(analytics.all.content.count).to be > 0
+  describe ".analytics", vcr: { cassette_name: 'analytics/index' } do
+    it "receives list of analytics" do
+      expect(Smartdc.analytics.content.count).to be > 0
     end
   end
 
-  describe ".destroy" do
-    it "returns true when success" do
-      analytic = fixture('analytics')[0]
-      object.stub(:status) {204}
-      request.stub_chain(:new, :del).with('my/analytics/instrumentations/' + analytic['id']) {object}
+  context "machine exists" do
+    let(:id) do
+      VCR.use_cassette('analytics/index') { Smartdc.analytics.content.first['id'] }
+    end
 
-      expect(analytics.destroy(analytic['id']).status).to eq(204)
+    describe ".analytic", vcr: { cassette_name: 'analytics/show' } do
+      it "receives a analytic" do
+        expect(Smartdc.analytic(id).content['id']).to eq(id)
+      end
+    end
+
+    describe ".value_analytic", vcr: { cassette_name: 'analytics/value' } do
+      it "values a analytic" do
+        expect(Smartdc.value_analytic(id).content['value']).to eq(0)
+      end
+    end
+
+    describe ".destroy_analytic", vcr: { cassette_name: 'analytics/destroy' } do
+      it "removes a analytic" do
+        expect(Smartdc.destroy_analytic(id).status).to eq(204)
+      end
     end
   end
-
 end

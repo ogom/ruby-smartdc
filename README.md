@@ -3,26 +3,15 @@ smartdc
 
 [![Gem Version](https://badge.fury.io/rb/smartdc.png)](https://rubygems.org/gems/smartdc) [![Build Status](https://travis-ci.org/ogom/ruby-smartdc.png?branch=master)](https://travis-ci.org/ogom/ruby-smartdc)
 
+[Joyent CloudAPI](https://apidocs.joyent.com/cloudapi/) client and command line interface.
+
 ```
               .
               |
  .-.  .--. .-.|  .-.
-: + : `--.(   | (   
+: + : `--.(   | (
  `-'  `--' `-'`- `-'
-
 ```
-
-smartdc is Joyent's [SmartDataCenter](http://www.joyent.com/software/smartdatacenter) client and SDC Command Line Interface.  
-[Joyent CloudAPI Documentation](http://apidocs.joyent.com/sdcapidoc/cloudapi/).  
-
-
-## Features
-
-* Response content is Hash.
-* Debug output Request and Response.
-* Output style is Table or JSON.
-* CLI is sub command style.
-
 
 ## Installation
 
@@ -33,57 +22,53 @@ gem install smartdc
 ## Usage
 
 ### CLI
+
 Invoke interactive configuration.
+
+#### Creates machine
 
 ```
 $ sdc init
-$ sdc dataset ls
-$ sdc package ls
-$ sdc machine add NAME -e DATASET_URN -p PACKAGE_NAME
-$ sdc machine ls
+$ sdc image list
+$ sdc package list
+$ sdc machine add NAME -i IMAGE_ID -p PACKAGE_ID
+$ sdc machine list
 ```
 
-
 #### Output JSON
+
 JSON is set to body of response.
 
 ```
-$ sdc machine ls --raw
+$ sdc machine list --raw
 ```
 
+#### Use machine
 
-#### Machine use
 Set to config the Machine uuid.
 
 ```
-$ sdc machine ls
-$ sdc machine get UUID
-$ sdc machine use UUID
-$ sdc machine get
+$ sdc machine list
+$ sdc machine show MACHINE_ID
+$ sdc machine use MACHINE_ID
+$ sdc machine show
 ```
 
+#### Receives machine
 
-### Program
 Hash is set to content of response.
 
 ```
 require 'smartdc'
 
-client = Smartdc.new({
-  hostname: 'example.com',
-  username: 'auth_user',
-  password: 'auth_pass',
-  version: '~6.5'
-})
-
-client.machines.all.content.each do |machine|
-  p "#{machine['name']} is state at #{machine['state']}." 
-
-  # Stop machine
-  p client.machines.stop(machine['id']).status
+Smartdc.configure do |config|
+  config.url = 'https://example.com'
+  config.username = 'user'
+  config.use_key = '4c:02:f3:b2:09:fb:29:dd:41:97:da:80:bc:69:6c:f8'
 end
-```
 
+Smartdc.machines.content
+```
 
 ## Tests
 
@@ -91,6 +76,6 @@ end
 $ rake spec
 ```
 
-## License 
+## License
 
 * MIT

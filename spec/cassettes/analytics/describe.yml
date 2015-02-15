@@ -1,0 +1,123 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://us-east-1.api.joyentcloud.com/my/analytics
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Date: ''
+      Authorization: ''
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      X-Api-Version:
+      - "~7.0"
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Api-Version:
+      - 7.2.0
+      Server:
+      - Joyent SmartDataCenter 7.2.0
+      Request-Id: ''
+      Content-Type:
+      - application/json
+      Access-Control-Expose-Headers:
+      - Api-Version, Request-Id, Response-Time
+      Strict-Transport-Security:
+      - max-age=6570000
+      Date: ''
+      X-Request-Id: ''
+      Content-Md5:
+      - XITArtu6vj84zHPuBiuzNQ==
+      Access-Control-Allow-Origin:
+      - "*"
+      Response-Time: ''
+      X-Response-Time: ''
+      Connection:
+      - Keep-Alive
+      Access-Control-Allow-Headers:
+      - Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version,
+        Response-Time
+      Access-Control-Allow-Methods:
+      - GET, HEAD
+      Api-Version:
+      - 7.2.0
+      Content-Length:
+      - '11086'
+    body:
+      encoding: UTF-8
+      string: '{"modules":{"apache":{"label":"Apache"},"cpu":{"label":"CPU"},"ldapjs":{"label":"ldapjs"},"memory":{"label":"Memory"},"mysql":{"label":"MySQL"},"syscall":{"label":"System
+        calls"},"fs":{"label":"Filesystem"},"node":{"label":"Node.js 0.4.x"},"nic":{"label":"Network
+        interface"},"vm":{"label":"Virtual Machine"},"tcp":{"label":"TCP"},"zfs":{"label":"ZFS"},"unix":{"label":"OS"}},"fields":{"zonename":{"label":"zone
+        name","type":"string"},"pid":{"label":"process identifier","type":"string"},"execname":{"label":"application
+        name","type":"string"},"psargs":{"label":"process arguments","type":"string"},"ppid":{"label":"parent
+        process identifier","type":"string"},"pexecname":{"label":"parent application
+        name","type":"string"},"ppsargs":{"label":"parent process arguments","type":"string"},"raddr":{"label":"remote
+        IP address","type":"string"},"rport":{"label":"remote TCP port","type":"string"},"http_method":{"label":"method","type":"string"},"http_url":{"label":"URL","type":"string"},"http_path":{"label":"URL
+        path","type":"string"},"latency":{"label":"latency","type":"time"},"subsecond":{"label":"subsecond
+        offset","type":"subsecond"},"leavereason":{"label":"reason leaving CPU","type":"string"},"runtime":{"label":"time
+        on CPU","type":"time"},"cpumode":{"label":"CPU mode","type":"string"},"optype":{"label":"operation
+        type","type":"string"},"ldapbinddn":{"label":"bind DN","type":"string"},"ldaprequestdn":{"label":"request
+        DN","type":"string"},"status":{"label":"status","type":"string"},"ldapfilter":{"label":"search
+        filter","type":"string"},"ldapscope":{"label":"search scope","type":"string"},"user":{"label":"client
+        username","type":"string"},"client":{"label":"client hostname","type":"string"},"command":{"label":"command","type":"string"},"cputime":{"label":"CPU
+        time","type":"time"},"querysubstr":{"label":"query substring","type":"string"},"database":{"label":"database
+        name","type":"string"},"parsed":{"label":"parsed","type":"string"},"statement":{"label":"statement
+        type","type":"string"},"rowsmatched":{"label":"rows matched","type":"number"},"rowschanged":{"label":"rows
+        changed","type":"number"},"table":{"label":"table name","type":"string"},"syscall":{"label":"syscall","type":"string"},"fstype":{"label":"filesystem
+        type","type":"string"},"size":{"label":"size","type":"size"},"offset":{"label":"offset","type":"size"},"gctype":{"label":"GC
+        type","type":"string"},"http_origin":{"label":"reported origin IP","type":"string"},"buffered":{"label":"bytes
+        buffered on socket","type":"size"},"direction":{"label":"sent/received","type":"string"},"vmmmuctx":{"label":"VM
+        MMU context","type":"string"},"errno":{"label":"error code","type":"string"},"zdataset":{"label":"ZFS
+        dataset","type":"string"},"walltime":{"label":"process runtime","type":"time"},"rss":{"label":"resident
+        set size","type":"size"},"contract":{"label":"contract identifier","type":"string"},"pmodel":{"label":"process
+        model","type":"string"},"nthreads":{"label":"number of threads","type":"number"}},"types":{"string":{"name":"string","arity":"discrete","unit":""},"time":{"arity":"numeric","unit":"seconds","abbr":"s","base":10,"power":-9,"name":"time"},"subsecond":{"arity":"numeric","unit":"seconds","abbr":"s","base":10,"power":-3,"name":"subsecond"},"size":{"arity":"numeric","unit":"bytes","abbr":"B","base":2,"name":"size"},"number":{"arity":"numeric","name":"number","unit":""}},"metrics":[{"module":"apache","stat":"httpd_ops","label":"HTTP
+        requests","interval":"interval","fields":["zonename","pid","execname","psargs","ppid","pexecname","ppsargs","raddr","rport","http_method","http_url","http_path","latency"],"unit":"requests"},{"module":"cpu","stat":"thread_samples","label":"thread
+        samples","interval":"interval","fields":["zonename","pid","execname","psargs","ppid","pexecname","ppsargs","subsecond"],"unit":"samples"},{"module":"cpu","stat":"thread_executions","label":"thread
+        executions","interval":"interval","fields":["zonename","pid","execname","psargs","ppid","pexecname","ppsargs","leavereason","runtime","subsecond"],"unit":"operations"},{"module":"cpu","stat":"usage","label":"aggregated
+        CPU usage","interval":"point","fields":["zonename","cpumode"],"unit":"percent
+        of 1 CPU"},{"module":"cpu","stat":"waittime","label":"aggregated wait time","interval":"interval","fields":["zonename"],"type":"time"},{"module":"ldapjs","stat":"connections","label":"connections","interval":"interval","fields":["zonename","pid","execname","psargs","raddr"],"unit":"connections"},{"module":"ldapjs","stat":"ops","label":"all
+        operations","interval":"interval","fields":["zonename","pid","execname","psargs","raddr","optype","ldapbinddn","ldaprequestdn","status","latency"],"unit":"operations"},{"module":"ldapjs","stat":"search_ops","label":"search
+        operations","interval":"interval","fields":["zonename","pid","execname","psargs","raddr","ldapbinddn","ldaprequestdn","status","ldapfilter","ldapscope","latency"],"unit":"operations"},{"module":"memory","stat":"rss","label":"resident
+        set size","interval":"point","fields":["zonename"],"type":"size"},{"module":"memory","stat":"rss_limit","label":"maximum
+        resident set size","interval":"point","fields":["zonename"],"type":"size"},{"module":"memory","stat":"swap","label":"virtual
+        memory reserved","interval":"point","fields":["zonename"],"type":"size"},{"module":"memory","stat":"swap_limit","label":"maximum
+        virtual memory reserved","interval":"point","fields":["zonename"],"type":"size"},{"module":"memory","stat":"reclaimed_bytes","label":"excess
+        memory reclaimed","interval":"interval","fields":["zonename"],"type":"size"},{"module":"memory","stat":"pageins","label":"pages
+        paged in","interval":"interval","fields":["zonename"],"unit":"pages"},{"module":"mysql","stat":"connections","label":"connections","interval":"interval","fields":["zonename","pid","execname","psargs","user","client","latency"],"unit":"connections"},{"module":"mysql","stat":"commands","label":"commands","interval":"interval","fields":["zonename","pid","execname","psargs","command","user","client","status","latency","cputime"],"unit":"commands"},{"module":"mysql","stat":"queries","label":"queries","interval":"interval","fields":["zonename","pid","execname","psargs","querysubstr","database","user","client","parsed","status","latency","cputime"],"unit":"queries"},{"module":"mysql","stat":"statements","label":"statements","interval":"interval","fields":["zonename","pid","execname","psargs","statement","status","rowsmatched","rowschanged","latency","cputime"],"unit":"statements"},{"module":"mysql","stat":"filesort","label":"filesort","interval":"interval","fields":["zonename","pid","execname","psargs","database","table","latency","cputime"],"unit":"filesorts"},{"module":"syscall","stat":"syscalls","label":"system
+        calls","interval":"interval","fields":["zonename","pid","execname","psargs","ppid","pexecname","ppsargs","syscall","subsecond","latency","cputime"],"unit":"syscalls"},{"module":"fs","stat":"logical_ops","label":"logical
+        filesystem operations","interval":"interval","fields":["zonename","pid","execname","psargs","ppid","pexecname","ppsargs","fstype","optype","latency"],"unit":"operations"},{"module":"fs","stat":"logical_rwops","label":"logical
+        read/write operations","interval":"interval","fields":["zonename","pid","execname","psargs","ppid","pexecname","ppsargs","fstype","optype","size","offset","latency"],"unit":"operations"},{"module":"fs","stat":"logical_rwbytes","label":"logical
+        bytes read/written","interval":"interval","fields":["zonename","optype"],"type":"size"},{"module":"node","stat":"gc_ops","label":"garbage
+        collection operations","interval":"interval","fields":["zonename","pid","execname","psargs","ppid","pexecname","ppsargs","gctype","latency"],"unit":"operations"},{"module":"node","stat":"httpc_ops","label":"HTTP
+        client operations","interval":"interval","fields":["zonename","pid","execname","psargs","ppid","pexecname","ppsargs","raddr","rport","http_method","http_url","http_path","latency"],"unit":"operations"},{"module":"node","stat":"httpd_ops","label":"HTTP
+        server operations","interval":"interval","fields":["zonename","pid","execname","psargs","ppid","pexecname","ppsargs","http_origin","raddr","rport","http_method","http_url","http_path","latency"],"unit":"operations"},{"module":"node","stat":"socket_ops","label":"socket
+        operations","interval":"interval","fields":["zonename","pid","execname","psargs","ppid","pexecname","ppsargs","optype","raddr","rport","size","buffered"],"unit":"operations"},{"module":"nic","stat":"vnic_bytes","label":"VNIC
+        bytes sent and received","interval":"interval","fields":["zonename","direction"],"type":"size"},{"module":"nic","stat":"vnic_packets","label":"VNIC
+        packets sent and received","interval":"interval","fields":["zonename","direction"],"unit":"packets"},{"module":"vm","stat":"thread_samples","label":"thread
+        samples","interval":"interval","fields":["zonename","subsecond","vmmmuctx"],"unit":"samples"},{"module":"vm","stat":"physio_ops","label":"disk
+        I/O operations","interval":"interval","fields":["zonename","optype","latency","size","offset","errno"],"unit":"operations"},{"module":"vm","stat":"physio_bytes","label":"disk
+        bytes read and written","interval":"interval","fields":["zonename","optype"],"type":"size"},{"module":"tcp","stat":"accepts","label":"accepts","interval":"interval","fields":["zonename","pid","execname","psargs","ppid","pexecname","ppsargs","rport","raddr"],"unit":"accepts"},{"module":"zfs","stat":"arc_ops","label":"ARC
+        operations","interval":"interval","fields":["zonename","execname","psargs","pid","pexecname","ppsargs","ppid","optype"],"unit":"operations"},{"module":"zfs","stat":"dataset_unused_quota","label":"unused
+        quota","interval":"point","fields":["zdataset"],"type":"size"},{"module":"zfs","stat":"dataset_used","label":"used
+        space","interval":"point","fields":["zdataset"],"type":"size"},{"module":"zfs","stat":"dataset_quota","label":"quota
+        size","interval":"point","fields":["zdataset"],"type":"size"},{"module":"unix","stat":"proc_execs","label":"process
+        execs","interval":"interval","fields":["zonename","execname","subsecond","psargs","ppid","ppsargs","pexecname","pid"],"unit":"processes"},{"module":"unix","stat":"proc_forks","label":"process
+        forks","interval":"interval","fields":["zonename","execname","subsecond","psargs","ppid","pid"],"unit":"processes"},{"module":"unix","stat":"proc_exits","label":"process
+        exits","interval":"interval","fields":["zonename","execname","subsecond","psargs","ppsargs","pexecname","ppid","pid","walltime"],"unit":"processes"},{"module":"unix","stat":"thr_creates","label":"thread
+        creations","interval":"interval","fields":["zonename","execname","subsecond","psargs","ppsargs","pexecname","ppid","pid"],"unit":"threads"},{"module":"unix","stat":"processes","label":"processes","interval":"interval","fields":["zonename","execname","pid","ppid","rss","contract","psargs","pmodel","nthreads"],"unit":"processes"}],"transformations":{"geolocate":{"label":"geolocate
+        IP addresses","fields":["raddr"]},"reversedns":{"label":"reverse dns IP addresses
+        lookup","fields":["raddr"]}}}'
+    http_version: 
+  recorded_at: Sun, 15 Feb 2015 11:37:46 GMT
+recorded_with: VCR 2.9.3

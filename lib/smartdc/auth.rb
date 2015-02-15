@@ -6,7 +6,7 @@ module Smartdc
 
     def initialize(options={})
       @username = options[:username]
-      @rsa_path = options[:rsa_path] ||= '~/.ssh'
+      @rsa_path = options[:rsa_path]
       @use_key = options[:use_key]
     end
 
@@ -16,7 +16,7 @@ module Smartdc
         Dir[File.join(path, '*')].each do |path|
           return path if File.file?(path) and self.use_key == self.fingerprint(path)
         end
-        return nil
+        return ''
       else
         return path
       end
@@ -32,7 +32,7 @@ module Smartdc
       str = [rsa.sign(sha256, data)].pack('m').delete("\r\n")
       "Signature keyId=\"/#{self.username}/keys/#{self.use_key}\",algorithm=\"rsa-sha256\" #{str}"
     rescue
-      nil
+      ''
     end
 
     def fingerprint(path)
@@ -40,7 +40,7 @@ module Smartdc
       str = [7].pack('N') + 'ssh-rsa' + rsa.public_key.e.to_s(0) + rsa.public_key.n.to_s(0)
       OpenSSL::Digest::MD5.hexdigest(str).scan(/../).join(':')
     rescue
-      nil
+      ''
     end
   end
 end

@@ -1,28 +1,19 @@
 require 'spec_helper'
 
 describe Smartdc::Api::Packages do
-
-  let(:object) {Object.new}
-  let(:request) {Smartdc::Request}
-  let(:packages) {Smartdc::Api::Packages.new({})}
-
-  describe ".read" do
-    it "returns a package" do
-      object.stub(:content) {fixture('packages')[0]}
-      name = object.content['name']
-      request.stub_chain(:new, :get).with('my/packages/' + name) {object}
-
-      expect(packages.read(name).content['name']).to eq(name)
+  describe ".packages", vcr: { cassette_name: 'packages/index' } do
+    it "receives list of packages" do
+      expect(Smartdc.packages.content.count).to be > 0
     end
   end
 
-  describe ".all" do
-    it "returns some packages" do
-      object.stub(:content) {fixture('packages')}
-      request.stub_chain(:new, :get).with('my/packages', {}) {object}
+  describe ".package", vcr: { cassette_name: 'packages/show' } do
+    let(:id) do
+      VCR.use_cassette('packages/index') { Smartdc.packages.content.first['id'] }
+    end
 
-      expect(packages.all.content.count).to be > 1
+    it "receives a package" do
+      expect(Smartdc.package(id).content['id']).to eq(id)
     end
   end
-
 end

@@ -1,0 +1,65 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://us-east-1.api.joyentcloud.com/my/machines
+    body:
+      encoding: UTF-8
+      string: '{"name":"example","image":"62f148f8-6e84-11e4-82c5-efca60348b9f","package":"d71da280-92da-489f-9c4c-c91891fa202f"}'
+    headers:
+      Date: ''
+      Authorization: ''
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      X-Api-Version:
+      - "~7.0"
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      X-Api-Version:
+      - 7.2.0
+      Server:
+      - Joyent SmartDataCenter 7.2.0
+      Request-Id: ''
+      Content-Type:
+      - application/json
+      Access-Control-Expose-Headers:
+      - Api-Version, Request-Id, Response-Time
+      Strict-Transport-Security:
+      - max-age=6570000
+      Date: ''
+      X-Request-Id: ''
+      Location:
+      - "/<USERNAME>/machines/4d17c91d-6b94-6f81-cbea-acfb3a8473b4"
+      Content-Md5:
+      - ZnUArVZqHMAGpQaVZ2B47w==
+      Access-Control-Allow-Origin:
+      - "*"
+      Response-Time: ''
+      X-Response-Time: ''
+      Connection:
+      - Keep-Alive
+      Access-Control-Allow-Headers:
+      - Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version,
+        Response-Time
+      Access-Control-Allow-Methods:
+      - POST, GET, HEAD
+      Api-Version:
+      - 7.2.0
+      Content-Length:
+      - '810'
+    body:
+      encoding: UTF-8
+      string: '{"id":"4d17c91d-6b94-6f81-cbea-acfb3a8473b4","name":"example","type":"smartmachine","state":"provisioning","image":"62f148f8-6e84-11e4-82c5-efca60348b9f","ips":[],"memory":256,"disk":16384,"metadata":{"root_authorized_keys":"ssh-rsa
+        AAAAB3NzaC1yc2EAAAADAQABAAABAQDFgraK6s3SXvn8cIFkCYOlOnWrYI0LwI+FPvtmp6oRRJL4aXbGu0LLId2mXqwZgWNGC5za3q0g+pbtpYyJKms/eXhvQGhOGMFCrONjc23hbUkSGRezBZuld2uYgjvm4egMTEhb1VvWjN+FXMXlV262FR5pqvw7k54+uKH6vjv893qEBQ4cDaLSrYPmbnsjWOthhGYYT5hZPOj7e5/F02VuNzi9BbPEBVEzrESJo6177vWX2g0g2oZoG4SZwH1S+AaRTXL9vPvVJSxkLdZ5Pp5QUren7L21soczP7fk0nqe7DPzqLnnaoxd5TAF5Mp+OdmyPTjwTFlKRTOxeS2N3Cot\n"},"tags":{},"created":"2015-02-15T10:21:48.877Z","updated":"2015-02-15T10:21:48.877Z","dataset":"sdc:sdc:base64:14.3.0","firewall_enabled":false,"compute_node":null,"package":"g3-standard-0.25-smartos"}'
+    http_version: 
+  recorded_at: Sun, 15 Feb 2015 10:21:49 GMT
+recorded_with: VCR 2.9.3

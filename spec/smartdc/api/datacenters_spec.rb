@@ -1,28 +1,19 @@
 require 'spec_helper'
 
 describe Smartdc::Api::Datacenters do
-
-  let(:object) {Object.new}
-  let(:request) {Smartdc::Request}
-  let(:datacenters) {Smartdc::Api::Datacenters.new({})}
-
-  describe ".read" do
-    it "returns a datacenter" do
-      object.stub(:content) {fixture('datacenter')}
-      name = fixture('datacenters').first[0]
-      request.stub_chain(:new, :get).with('my/datacenters/' + name) {object}
-
-      expect(datacenters.read(name).content['message']).to match(/#{name}/)
+  describe ".datacenters", vcr: { cassette_name: 'datacenters/index' } do
+    it "receives list of datacenters" do
+      expect(Smartdc.datacenters.content.count).to be > 0
     end
   end
 
-  describe ".all" do
-    it "returns some datacenter" do
-      object.stub(:content) {fixture('datacenters')}
-      request.stub_chain(:new, :get).with('my/datacenters', {}) {object}
+  describe ".datacenter", vcr: { cassette_name: 'datacenters/show' } do
+    let(:name) do
+      VCR.use_cassette('datacenters/index') { Smartdc.datacenters.content.first[0] }
+    end
 
-      expect(datacenters.all.content.count).to be > 0
+    it "receives a datacenter" do
+      expect(Smartdc.datacenter(name).content['message']).to match(/#{name}/)
     end
   end
-
 end

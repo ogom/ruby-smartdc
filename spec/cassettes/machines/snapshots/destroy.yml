@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: delete
+    uri: https://us-east-1.api.joyentcloud.com/my/machines/4d17c91d-6b94-6f81-cbea-acfb3a8473b4/snapshots/example
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Date: ''
+      Authorization: ''
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      X-Api-Version:
+      - "~7.0"
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      X-Api-Version:
+      - 7.2.0
+      Server:
+      - Joyent SmartDataCenter 7.2.0
+      Request-Id: ''
+      Access-Control-Expose-Headers:
+      - Api-Version, Request-Id, Response-Time
+      Strict-Transport-Security:
+      - max-age=6570000
+      Date: ''
+      X-Request-Id: ''
+      Access-Control-Allow-Origin:
+      - "*"
+      Response-Time: ''
+      X-Response-Time: ''
+      Connection:
+      - Keep-Alive
+      Access-Control-Allow-Headers:
+      - Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version,
+        Response-Time
+      Access-Control-Allow-Methods:
+      - POST, GET, HEAD, DELETE
+      Api-Version:
+      - 7.2.0
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Sun, 15 Feb 2015 11:29:41 GMT
+recorded_with: VCR 2.9.3

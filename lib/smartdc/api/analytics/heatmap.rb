@@ -1,20 +1,11 @@
 module Smartdc::Api
-  class Analytics
-    class Heatmap
-      attr_reader :request, :id
+  module Analytics::Heatmap
+    def analytic_image(analytic_id, params={})
+      get 'my/analytics/instrumentations/' + analytic_id.to_s + '/value/heatmap/image', params
+    end
 
-      def initialize(request, id)
-        @request = request
-        @id = id
-      end
-
-      def image(query={})
-        request.get('my/analytics/instrumentations/' + @id.to_s + '/value/heatmap/image', query)
-      end
-
-      def details(query={})
-        request.get('my/analytics/instrumentations/' + @id.to_s + '/value/heatmap/details', query)
-      end  
+    def analytic_details(analytic_id, params={})
+      get 'my/analytics/instrumentations/' + analytic_id.to_s + '/value/heatmap/details', params
     end
   end
 end
