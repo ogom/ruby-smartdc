@@ -1,0 +1,123 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://us-east-1.api.joyentcloud.com/my/packages
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Date: ''
+      Authorization: ''
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      X-Api-Version:
+      - "~7.0"
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Api-Version:
+      - 7.2.0
+      Server:
+      - Joyent SmartDataCenter 7.2.0
+      Request-Id: ''
+      Content-Type:
+      - application/json
+      Access-Control-Expose-Headers:
+      - Api-Version, Request-Id, Response-Time
+      Strict-Transport-Security:
+      - max-age=6570000
+      Date: ''
+      X-Request-Id: ''
+      Content-Md5:
+      - ir1aPBPXlfB0WtvHVLONXQ==
+      Access-Control-Allow-Origin:
+      - "*"
+      Response-Time: ''
+      X-Response-Time: ''
+      Connection:
+      - Keep-Alive
+      Access-Control-Allow-Headers:
+      - Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version,
+        Response-Time
+      Access-Control-Allow-Methods:
+      - GET, HEAD
+      Api-Version:
+      - 7.2.0
+      Content-Length:
+      - '14042'
+    body:
+      encoding: UTF-8
+      string: '[{"name":"g3-standard-8-smartos","memory":8192,"disk":807936,"swap":16384,"vcpus":0,"default":false,"id":"28d8c3f1-cf62-422a-a41d-fdf8b5110d00","version":"1.0.0","description":"Standard
+        8 GB RAM 2 vCPUs and bursting 789 GB Disk","group":"Standard"},{"name":"g3-highio-30-kvm","memory":30720,"disk":737280,"swap":61440,"vcpus":4,"default":false,"id":"00747b85-e955-42c3-93b7-bf5cd6b3b82f","version":"1.0.0","description":"High
+        I/O 30GB DRAM,  4vCPU  725 GB SSD","group":"High I/O"},{"name":"g3-highio-30-smartos","memory":30720,"disk":737280,"swap":61440,"vcpus":0,"default":false,"id":"58e0f906-ca40-4a09-9284-395f0465a36e","version":"1.0.0","description":"High
+        I/O 30GB DRAM, 725GB SSD, 4vCPU bursting","group":"High I/O"},{"name":"g3-highio-15-smartos","memory":15360,"disk":368640,"swap":30720,"vcpus":0,"default":false,"id":"b995c6a2-c2e6-4722-b420-f35da6b6281f","version":"1.0.0","description":"High
+        I/O 15GB DRAM 2vCPU and bursting 360 GB SSD","group":"High I/O"},{"name":"g3-highio-15-kvm","memory":15360,"disk":368640,"swap":30720,"vcpus":2,"default":false,"id":"7051f5b0-ad5a-4a12-b8bd-0bbea8cd15ce","version":"1.0.0","description":"High
+        I/O 15GB DRAM,  2vCPU  360 GB SSD","group":"High I/O"},{"name":"Extra Small
+        512 MB","memory":512,"disk":15360,"swap":1024,"vcpus":1,"default":false,"id":"bfc06316-c22f-4143-801c-5a6d91812ba0","version":"1.0.0"},{"name":"XL
+        32GB","memory":32768,"disk":778240,"swap":65536,"vcpus":16,"default":false,"id":"e988cb47-90c3-42e3-bc2f-4192c370f60c","version":"1.0.1"},{"name":"Large
+        16GB","memory":16384,"disk":491520,"swap":32768,"vcpus":12,"default":false,"id":"f642bad3-c5c2-40a9-9082-3fe99ec6597a","version":"1.0.1"},{"name":"Small
+        1GB","memory":1024,"disk":30720,"swap":2048,"vcpus":1,"default":true,"id":"d9396ca5-985e-47c6-b90f-6fa0795e60ad","version":"1.0.2"},{"name":"Medium
+        2GB","memory":2048,"disk":61440,"swap":4096,"vcpus":2,"default":false,"id":"3b5fe076-b28c-4d23-bfc7-0435d9a7c412","version":"1.0.2"},{"name":"Medium
+        4GB","memory":4096,"disk":122880,"swap":8192,"vcpus":4,"default":false,"id":"333814c2-b4a7-481f-9f86-73bb4122c7a3","version":"1.0.2"},{"name":"Large
+        8GB","memory":8192,"disk":245760,"swap":16384,"vcpus":8,"default":false,"id":"3c275c86-498b-4f38-9910-82c0cfdffa34","version":"1.0.2"},{"name":"XXL
+        48GB","memory":49152,"disk":1048576,"swap":98304,"vcpus":16,"default":false,"id":"439e5c84-4ea9-403c-aef4-da2e2227a6f9","version":"1.0.2"},{"name":"XXXL
+        64GB","memory":65536,"disk":1572864,"swap":131072,"vcpus":16,"default":false,"id":"a7b1ff0c-faa5-4c2a-826b-21624920bfe7","version":"1.0.2"},{"name":"g3-standard-15-smartos","memory":15360,"disk":1502208,"swap":30720,"vcpus":0,"default":false,"id":"31b0fa76-c0bf-435f-a7d0-1eb18e845af2","version":"1.0.0","description":"Standard
+        15 GB RAM 4 vCPUs and bursting 1467 GB Disk","group":"Standard"},{"name":"g3-highmemory-17.125-smartos","memory":17536,"disk":430080,"swap":35072,"vcpus":0,"default":false,"id":"1f80e822-c392-4cc1-876d-f2a11dcabfa7","version":"1.0.0","description":"High
+        Memory 17.1 GB RAM 2 vCPUs and bursting 420 GB Disk","group":"High Memory"},{"name":"g3-highmemory-17.125-kvm","memory":17536,"disk":430080,"swap":35072,"vcpus":2,"default":false,"id":"4531f389-dcf9-4897-b71b-bd92e3abbf45","version":"1.0.0","description":"High
+        Memory 17.1 GB RAM 2 vCPUs 420 GB Disk","group":"High Memory"},{"name":"g3-standard-8-kvm","memory":8192,"disk":807936,"swap":16384,"vcpus":2,"default":false,"id":"05d48d7c-2fd1-4290-a439-c98a1c85d248","version":"1.0.0","description":"Standard
+        8 GB RAM 2 vCPUs 789 GB Disk","group":"Standard"},{"name":"g3-standard-30-kvm","memory":30720,"disk":1723392,"swap":61440,"vcpus":8,"default":false,"id":"1992cda2-0084-47e4-b5af-48e552608623","version":"1.0.0","description":"Standard
+        30 GB RAM 8 vCPUs 1683 GB Disk","group":"Standard"},{"name":"g3-standard-1.75-smartos","memory":1792,"disk":57344,"swap":3584,"vcpus":0,"default":false,"id":"a59c0fc1-bb3a-4130-a5a8-fb0e98a5a7b9","version":"1.0.0","description":"Standard
+        1.7 GB RAM 1 vCPU and bursting 56 GB Disk","group":"Standard"},{"name":"g3-standard-7.5-smartos","memory":7680,"disk":755712,"swap":15360,"vcpus":0,"default":false,"id":"6818f873-0bc5-49a2-a8e4-3c79e930e960","version":"1.0.0","description":"Standard
+        7.5 GB RAM 2 vCPUs and bursting 738 GB Disk","group":"Standard"},{"name":"g3-highmemory-34.25-smartos","memory":35072,"disk":863232,"swap":70144,"vcpus":0,"default":false,"id":"1ee16856-6fa6-496c-a2bd-8ec3d923a44b","version":"1.0.0","description":"High
+        Memory 34.2 GB RAM 4 vCPUs and bursting 843 GB Disk","group":"High Memory"},{"name":"g3-highmemory-34.25-kvm","memory":35072,"disk":863232,"swap":70144,"vcpus":4,"default":false,"id":"a08b7689-f83d-4fe0-8291-a6a74909bf72","version":"1.0.0","description":"High
+        Memory 34.2 GB RAM 4 vCPUs 843 GB Disk","group":"High Memory"},{"name":"g3-standard-3.75-smartos","memory":3840,"disk":125952,"swap":7680,"vcpus":0,"default":false,"id":"2648aba0-f2ae-4efb-97bc-c71ca0de14b1","version":"1.0.0","description":"Standard
+        3.75 GB RAM 1 vCPU and bursting 123 GB Disk","group":"Standard"},{"name":"g3-standard-30-smartos","memory":30720,"disk":1723392,"swap":61440,"vcpus":0,"default":false,"id":"c042153b-49fc-4673-a34d-03d76fefdc46","version":"1.0.0","description":"Standard
+        30 GB RAM 8 vCPUs and bursting 1683 GB Disk","group":"Standard"},{"name":"g3-standard-64-smartos","memory":65536,"disk":2150400,"swap":131072,"vcpus":0,"default":false,"id":"bcb1c6f8-2371-424e-9c69-1cdfc168739d","version":"1.0.0","description":"Standard
+        64 GB RAM 16 vCPUs and bursting 2100 GB Disk","group":"Standard"},{"name":"g3-standard-80-smartos","memory":81920,"disk":2688000,"swap":163840,"vcpus":0,"default":false,"id":"f5f06bb4-3824-4e76-89e7-e3780e378fc1","version":"1.0.0","description":"Standard
+        80 GB RAM 20 vCPUs and bursting 2625 GB Disk","group":"Standard"},{"name":"g3-highmemory-68.375-smartos","memory":70016,"disk":1148928,"swap":140032,"vcpus":0,"default":false,"id":"7d7a5957-f859-4483-83c9-e11e2af7bf24","version":"1.0.0","description":"High
+        Memory 68.4 GB RAM 8 vCPUs and bursting 1122 GB Disk","group":"High Memory"},{"name":"g3-standard-0.25-smartos","memory":256,"disk":16384,"swap":512,"vcpus":0,"default":false,"id":"d71da280-92da-489f-9c4c-c91891fa202f","version":"1.0.0","description":"Micro
+        0.25 GB RAM 0.125 vCPU and bursting 16 GB Disk","group":"Standard"},{"name":"g3-standard-48-smartos","memory":49152,"disk":1723392,"swap":98304,"vcpus":0,"default":false,"id":"08f18b9c-0de6-4ee3-bc08-e598caedc953","version":"1.0.0","description":"Standard
+        48 GB RAM 12 vCPUs and bursting 1683 GB Disk","group":"Standard"},{"name":"g3-standard-0.625-smartos","memory":640,"disk":20480,"swap":1280,"vcpus":0,"default":false,"id":"6a6c0056-38b9-4982-90ad-682d63970b4c","version":"1.0.0","description":"Micro
+        0.6 GB RAM 0.15 vCPU and bursting 20 GB Disk","group":"Standard"},{"name":"g3-standard-1-smartos","memory":1024,"disk":33792,"swap":2048,"vcpus":0,"default":false,"id":"11a01166-3f15-4857-bfde-b5c326acd85f","version":"1.0.0","description":"Standard
+        1 GB RAM 0.25 vCPU and bursting 33 GB Disk","group":"Standard"},{"name":"g3-standard-4-smartos","memory":4096,"disk":134144,"swap":8192,"vcpus":0,"default":false,"id":"53be60b7-baa1-4bee-a337-c151b3eb34e9","version":"1.0.0","description":"Standard
+        4 GB RAM 1 vCPU and bursting 131 GB Disk","group":"Standard"},{"name":"g3-standard-32-smartos","memory":32768,"disk":1723392,"swap":65536,"vcpus":0,"default":false,"id":"e8868374-b6dc-40a9-b50c-46b79854b192","version":"1.0.0","description":"Standard
+        32 GB RAM 8 vCPUs and bursting 1683 GB Disk","group":"Standard"},{"name":"g3-standard-0.5-smartos","memory":512,"disk":16384,"swap":1024,"vcpus":0,"default":false,"id":"06a0251c-038f-4eda-8af2-653c46b3aee8","version":"1.0.0","description":"Micro
+        0.5 GB RAM 0.125 vCPU and bursting 16 GB Disk","group":"Standard"},{"name":"g3-standard-2-smartos","memory":2048,"disk":67584,"swap":4096,"vcpus":0,"default":false,"id":"486bb054-6a97-4ba3-97b7-2413d5f8e849","version":"1.0.0","description":"Standard
+        2 GB RAM 1 vCPU and bursting 66 GB Disk","group":"Standard"},{"name":"g3-standard-0.5-kvm","memory":512,"disk":16384,"swap":1024,"vcpus":1,"default":false,"id":"4f262a43-1151-45a0-a29c-e726e878c582","version":"1.0.0","description":"Micro
+        0.5 GB RAM 1 vCPU 16 GB Disk","group":"Standard"},{"name":"g3-standard-7.5-kvm","memory":7680,"disk":755712,"swap":15360,"vcpus":2,"default":false,"id":"823082ec-c845-47c6-88bb-51df88db013d","version":"1.0.0","description":"Standard
+        7.5 GB RAM 2 vCPUs 738 GB Disk","group":"Standard"},{"name":"g3-standard-15-kvm","memory":15360,"disk":1502208,"swap":30720,"vcpus":4,"default":false,"id":"53fdb34a-91bd-4034-ba95-750edfa8bfa9","version":"1.0.0","description":"Standard
+        15 GB RAM 4 vCPUs 1467 GB Disk","group":"Standard"},{"name":"g3-standard-0.25-kvm","memory":256,"disk":16384,"swap":512,"vcpus":1,"default":false,"id":"f13b10ca-1a63-4903-b29e-8615ea3858a6","version":"1.0.0","description":"Micro
+        0.25 GB RAM 1 vCPU 16 GB Disk","group":"Standard"},{"name":"g3-standard-1-kvm","memory":1024,"disk":33792,"swap":2048,"vcpus":1,"default":false,"id":"85284e54-5ae7-41e5-b765-4194655a52e4","version":"1.0.0","description":"Standard
+        1 GB RAM 1 vCPU 33 GB Disk","group":"Standard"},{"name":"g3-standard-3.75-kvm","memory":3840,"disk":125952,"swap":7680,"vcpus":1,"default":false,"id":"6c061105-5822-4e97-81ee-1e127c8d00f6","version":"1.0.0","description":"Standard
+        3.75 GB RAM 1 vCPU 123 GB Disk","group":"Standard"},{"name":"g3-standard-0.625-kvm","memory":640,"disk":20480,"swap":1280,"vcpus":1,"default":false,"id":"a37ba6f5-b643-46a6-8b5c-58eb660b2f09","version":"1.0.0","description":"Standard
+        0.6 GB RAM 1 vCPU 20 GB Disk","group":"Standard"},{"name":"g3-standard-1.75-kvm","memory":1792,"disk":57344,"swap":3584,"vcpus":1,"default":false,"id":"8e5b81e1-e62f-4b3b-b06e-9a7d473ca1da","version":"1.0.0","description":"Standard
+        1.7 GB RAM 1 vCPU 56 GB Disk","group":"Standard"},{"name":"g3-standard-4-kvm","memory":4096,"disk":134144,"swap":8192,"vcpus":1,"default":false,"id":"43e0444f-a065-4ea7-ba96-e941abc0b08f","version":"1.0.0","description":"Standard
+        4 GB RAM 1 vCPU 131 GB Disk","group":"Standard"},{"name":"g3-standard-2-kvm","memory":2048,"disk":67584,"swap":4096,"vcpus":1,"default":false,"id":"8b7b089a-6b18-4057-95e4-24fccdbae6c5","version":"1.0.0","description":"Standard
+        2 GB RAM 1 vCPU 66 GB Disk","group":"Standard"},{"name":"g3-highio-60.5-smartos","memory":61952,"disk":1486848,"swap":123904,"vcpus":0,"default":false,"id":"df9b1ed8-d165-4e3d-bf0d-805d35c9c489","version":"1.0.0","description":"High
+        I/O 60.5 GB RAM 8 vCPUs and bursting 1452 GB Disk","group":"High I/O"},{"name":"g3-highmemory-68.375-kvm","memory":70016,"disk":1148928,"swap":140032,"vcpus":8,"default":false,"id":"efa3eaa3-5086-46b2-99af-67621dd7363f","version":"1.0.0","description":"High
+        Memory 68.4 GB RAM 8 vCPUs 1122 GB Disk","group":"High Memory"},{"name":"g3-highio-60.5-kvm","memory":61952,"disk":1486848,"swap":123904,"vcpus":8,"default":false,"id":"5f3a2f56-3d95-4141-9880-fc65986be9d2","version":"1.0.0","description":"High
+        I/O 60.5 GB RAM 8 vCPUs 1452 GB Disk","group":"High I/O"},{"name":"g3-highcpu-8-kvm","memory":8192,"disk":307200,"swap":14336,"vcpus":8,"default":false,"id":"94444a5d-e03f-451d-a94a-d8c0532832ef","version":"1.1.0","description":"High
+        CPU 8 GB RAM 8 vCPUs 300 GB Disk","group":"High CPU"},{"name":"g3-highcpu-4-smartos","memory":4096,"disk":153600,"swap":8192,"vcpus":0,"default":false,"id":"80afced7-4bde-4026-afb5-7b41d5e30e60","version":"1.1.0","description":"High
+        CPU 4 GB RAM 4 vCPUs and bursting 150 GB Disk","group":"High CPU"},{"name":"g3-highcpu-24-smartos","memory":24576,"disk":921600,"swap":49152,"vcpus":0,"default":false,"id":"ae9b4795-92f0-4415-bce9-e3a9f02e6d9b","version":"1.1.0","description":"High
+        CPU 24 GB RAM 24 vCPUs and bursting 900 GB Disk","group":"High CPU"},{"name":"g3-highcpu-7-smartos","memory":7168,"disk":269312,"swap":14336,"vcpus":0,"default":false,"id":"3da4da4e-26d4-4ad9-84a5-16e41b71bdbe","version":"1.1.0","description":"High
+        CPU 7 GB RAM 7 vCPUs and bursting 263 GB Disk","group":"High CPU"},{"name":"g3-highcpu-8-smartos","memory":8192,"disk":307200,"swap":14336,"vcpus":0,"default":false,"id":"cfe77812-d37d-4b01-b61b-4586a702ef9d","version":"1.1.0","description":"High
+        CPU 8 GB RAM 8 vCPUs and bursting 300 GB Disk","group":"High CPU"},{"name":"g3-highcpu-1.75-smartos","memory":1792,"disk":76800,"swap":3584,"vcpus":0,"default":false,"id":"b6e1ec3e-5aa9-48db-bf32-72b7d99edc5c","version":"1.1.0","description":"High
+        CPU 1.7 GB RAM 2 vCPUs and bursting 75 GB Disk","group":"High CPU"},{"name":"g3-highcpu-16-smartos","memory":16384,"disk":614400,"swap":32768,"vcpus":0,"default":false,"id":"324293ad-474e-45fd-8506-a8c270db4cec","version":"1.1.0","description":"High
+        CPU 16 GB RAM 16 vCPUs and bursting 600 GB Disk","group":"High CPU"},{"name":"g3-highcpu-4-kvm","memory":4096,"disk":153600,"swap":8192,"vcpus":4,"default":false,"id":"a5fac9f7-1fc8-442b-87cc-4d2e0b787c39","version":"1.1.0","description":"High
+        CPU 4 GB RAM 4 vCPUs 150 GB Disk","group":"High CPU"},{"name":"g3-highcpu-1.75-kvm","memory":1792,"disk":76800,"swap":3584,"vcpus":2,"default":false,"id":"c341ac64-a937-4bbb-8c01-8b972a743098","version":"1.1.0","description":"High
+        CPU 1.7 GB RAM 2 vCPUs 75 GB Disk","group":"High CPU"},{"name":"g3-highcpu-7-kvm","memory":7168,"disk":269312,"swap":14336,"vcpus":7,"default":false,"id":"ebb5dffb-04fd-487f-bd03-581ade19f717","version":"1.1.0","description":"High
+        CPU 7 GB RAM 7 vCPUs 263 GB Disk","group":"High CPU"},{"name":"g3-devtier-0.25-kvm","memory":256,"disk":16384,"swap":512,"vcpus":1,"default":false,"id":"4dad8aa6-2c7c-e20a-be26-c7f4f1925a9a","version":"1.0.3","description":"DevTier
+        - Micro 0.25 GB RAM 1 vCPU 16 GB Disk","group":"Standard"},{"name":"g3-devtier-0.25-smartos","memory":256,"disk":16384,"swap":512,"vcpus":0,"default":false,"id":"9fcd9ab7-bd07-cb3c-9f9a-ac7ec3aa934e","version":"1.0.3","description":"DevTier
+        - Micro 0.25 GB RAM 0.125 vCPU and bursting 16 GB Disk","group":"Standard"}]'
+    http_version: 
+  recorded_at: Sun, 15 Feb 2015 09:47:12 GMT
+recorded_with: VCR 2.9.3

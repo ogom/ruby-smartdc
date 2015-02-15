@@ -1,44 +1,27 @@
-require 'smartdc/api/analytics/heatmap'
+module Smartdc::Api
+  module Analytics
+    def analytics(params={})
+      get 'my/analytics/instrumentations', params
+    end
 
-module Smartdc
-  module Api
-    class Analytics
-      attr_reader :request
+    def create_analytic(body={})
+      post 'my/analytics/instrumentations', body
+    end
 
-      def initialize(options)
-        @request = Smartdc::Request.new(options)
-      end
+    def analytic(id)
+      get 'my/analytics/instrumentations/' + id.to_s
+    end
 
-      def describe
-        request.get('my/analytics')
-      end
+    def destroy_analytic(id)
+      delete 'my/analytics/instrumentations/' + id.to_s
+    end
 
-      def create(raw={})
-        request.post('my/analytics/instrumentations/', raw)
-      end
+    def value_analytic(id)
+      get 'my/analytics/instrumentations/' + id.to_s + '/value/raw'
+    end
 
-      def read(id)
-        raise ArgumentError unless id
-        request.get('my/analytics/instrumentations/' + id.to_s)
-      end
-
-      def all(query={})
-        request.get('my/analytics/instrumentations', query)
-      end
-
-      def destroy(id)
-        request.del('my/analytics/instrumentations/' + id.to_s)
-      end
-
-      def value(id)
-        raise ArgumentError unless id
-        request.get('my/analytics/instrumentations/' + id.to_s + '/value/raw')
-      end
-
-      def heatmap(id)
-        raise ArgumentError unless id
-        Smartdc::Api::Analytics::Heatmap.new(request, id)
-      end
+    def describe_analytics(params={})
+      get 'my/analytics', params
     end
   end
 end

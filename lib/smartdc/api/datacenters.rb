@@ -1,20 +1,11 @@
-module Smartdc
-  module Api
-    class Datacenters
-      attr_reader :request
+module Smartdc::Api
+  module Datacenters
+    def datacenters(params={})
+      get 'my/datacenters', params
+    end
 
-      def initialize(options)
-        @request = Smartdc::Request.new(options)
-      end
-
-      def read(id)
-        raise ArgumentError unless id
-        request.get('my/datacenters/' + id.to_s)
-      end
-
-      def all(query={})
-        request.get('my/datacenters', query)
-      end
+    def datacenter(id)
+      get 'my/datacenters/' + id.to_s
     end
   end
 end

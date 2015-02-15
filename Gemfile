@@ -5,3 +5,7 @@ gemspec
 group :test do
   gem 'rspec'
 end
+
+group :development, :test do
+  gem 'webmock'
+end

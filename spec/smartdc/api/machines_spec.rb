@@ -1,48 +1,59 @@
 require 'spec_helper'
 
 describe Smartdc::Api::Machines do
-  
-  let(:object) {Object.new}
-  let(:request) {Smartdc::Request}
-  let(:machines) {Smartdc::Api::Machines.new({})}
+  describe ".create_machine", vcr: { cassette_name: 'machines/create' } do
+    let(:machine) do
+      {
+        name:    'example',
+        image:   '62f148f8-6e84-11e4-82c5-efca60348b9f',
+        package: 'd71da280-92da-489f-9c4c-c91891fa202f'
+      }
+    end
 
-  describe ".create" do
-    it "creates a machine" do
-      object.stub(:content) {fixture('machines')[0]}
-      machine = object.content
-      request.stub_chain(:new, :post).with('my/machines/', machine) {object}
-
-      expect(machines.create(machine).content['name']).to eq(machine['name'])
+    it "creates a new machine" do
+      expect(Smartdc.create_machine(machine).content['name']).to eq(machine[:name])
     end
   end
 
-  describe ".read" do
-    it "returns a machine" do
-      object.stub(:content) {fixture('machines')[0]}
-      name = object.content['name']
-      request.stub_chain(:new, :get).with('my/machines/' + name) {object}
-
-      expect(machines.read(name).content['name']).to eq(name)
+  describe ".machines", vcr: { cassette_name: 'machines/index' } do
+    it "receives list of machines" do
+      expect(Smartdc.machines.content.count).to be > 0
     end
   end
 
-  describe ".all" do
-    it "returns some machines" do
-      object.stub(:content) {fixture('machines')}
-      request.stub_chain(:new, :get).with('my/machines', {}) {object}
+  context "machine exists" do
+    let(:id) do
+      VCR.use_cassette('machines/index') { Smartdc.machines.content.first['id'] }
+    end
 
-      expect(machines.all.content.count).to be > 1
+    describe ".machine", vcr: { cassette_name: 'machines/show' } do
+      it "receives a machine" do
+        expect(Smartdc.machine(id).content['id']).to eq(id)
+      end
+    end
+
+    describe ".stop_machine", vcr: { cassette_name: 'machines/stop' } do
+      it "stops a machine" do
+        expect(Smartdc.stop_machine(id).status).to eq(202)
+      end
+    end
+
+    describe ".start_machine", vcr: { cassette_name: 'machines/start' } do
+      it "starts a machine" do
+        expect(Smartdc.start_machine(id).status).to eq(202)
+      end
+    end
+
+    describe ".reboot_machine", vcr: { cassette_name: 'machines/reboot' } do
+      it "reboots a machine" do
+        expect(Smartdc.reboot_machine(id).status).to eq(202)
+      end
+    end
+
+    describe ".destroy_machine", vcr: { cassette_name: 'machines/destroy' } do
+      it "removes a machine" do
+        expect(Smartdc.destroy_machine(id).status).to eq(204)
+      end
     end
   end
-
-  describe ".destroy" do
-    it "returns true when success" do
-      machine = fixture('machines')[0]
-      object.stub(:status) {204}
-      request.stub_chain(:new, :del).with('my/machines/' + machine['name']) {object}
-
-      expect(machines.destroy(machine['name']).status).to eq(204)
-    end
-  end
-
 end

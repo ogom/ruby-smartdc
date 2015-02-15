@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://us-east-1.api.joyentcloud.com/my/analytics/instrumentations
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Date: ''
+      Authorization: ''
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      X-Api-Version:
+      - "~7.0"
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Api-Version:
+      - 7.2.0
+      Server:
+      - Joyent SmartDataCenter 7.2.0
+      Request-Id: ''
+      Content-Type:
+      - application/json
+      Access-Control-Expose-Headers:
+      - Api-Version, Request-Id, Response-Time
+      Strict-Transport-Security:
+      - max-age=6570000
+      Date: ''
+      X-Request-Id: ''
+      Content-Md5:
+      - ilATJWsNyP/ABfcaGVRPYg==
+      Access-Control-Allow-Origin:
+      - "*"
+      Response-Time: ''
+      X-Response-Time: ''
+      Connection:
+      - Keep-Alive
+      Access-Control-Allow-Headers:
+      - Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version,
+        Response-Time
+      Access-Control-Allow-Methods:
+      - GET, HEAD, POST
+      Api-Version:
+      - 7.2.0
+      Content-Length:
+      - '384'
+    body:
+      encoding: UTF-8
+      string: '[{"module":"syscall","stat":"syscalls","predicate":{},"decomposition":[],"value-dimension":1,"value-arity":"scalar","enabled":true,"retention-time":600,"idle-max":3600,"transformations":{},"nsources":1,"granularity":1,"persist-data":false,"crtime":1424000674378,"value-scope":"interval","id":"256","uris":[{"uri":"/<USERNAME>/analytics/instrumentations/256/value/raw","name":"value_raw"}]}]'
+    http_version: 
+  recorded_at: Sun, 15 Feb 2015 11:45:21 GMT
+recorded_with: VCR 2.9.3

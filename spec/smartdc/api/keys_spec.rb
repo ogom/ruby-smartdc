@@ -1,48 +1,34 @@
 require 'spec_helper'
 
 describe Smartdc::Api::Keys do
+  let(:key) do
+    {
+      name: 'example',
+      key: File.read(File.expand_path('./spec/fixtures/ssh/id_rsa.pub'))
+    }
+  end
 
-  let(:object) {Object.new}
-  let(:request) {Smartdc::Request}
-  let(:keys) {Smartdc::Api::Keys.new({})}
-
-  describe ".create" do
-    it "creates a key" do
-      object.stub(:content) {fixture('keys')[0]}
-      key = object.content
-      request.stub_chain(:new, :post).with('my/keys/', key) {object}
-
-      expect(keys.create(key).content['name']).to eq(key['name'])
+  describe ".create_key", vcr: { cassette_name: 'keys/create' } do
+    it "creates a new key" do
+      expect(Smartdc.create_key(key).content['name']).to eq(key[:name])
     end
   end
 
-  describe ".read" do
-    it "returns a key" do
-      object.stub(:content) {fixture('keys')[0]}
-      name = object.content['name']
-      request.stub_chain(:new, :get).with('my/keys/' + name) {object}
-
-      expect(keys.read(name).content['name']).to eq(name)
+  describe ".keys", vcr: { cassette_name: 'keys/index' } do
+    it "receives list of keys" do
+      expect(Smartdc.keys.content.count).to be > 0
     end
   end
 
-  describe ".all" do
-    it "returns some keys" do
-      object.stub(:content) {fixture('keys')}
-      request.stub_chain(:new, :get).with('my/keys', {}) {object}
-
-      expect(keys.all.content.count).to be > 1
+  describe ".key", vcr: { cassette_name: 'keys/show' } do
+    it "receives a key" do
+      expect(Smartdc.key(key[:name]).content['name']).to eq(key[:name])
     end
   end
 
-  describe ".destroy" do
-    it "returns true when success" do
-      key = fixture('keys')[0]
-      object.stub(:status) {204}
-      request.stub_chain(:new, :del).with('my/keys/' + key['name']) {object}
-
-      expect(keys.destroy(key['name']).status).to eq(204)
+  describe ".destroy_key", vcr: { cassette_name: 'keys/destroy' } do
+    it "removes a key" do
+      expect(Smartdc.destroy_key(key[:name]).status).to eq(204)
     end
   end
-
 end

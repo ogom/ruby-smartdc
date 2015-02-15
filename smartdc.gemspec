@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Smartdc::VERSION
   spec.authors       = ["ogom"]
   spec.email         = ["ogom@hotmail.co.jp"]
-  spec.description   = %q{SmartDataCenter Client and SmartDataCenter Command Line Interface.}
-  spec.summary       = %q{Joyent SmartDataCenter CloudApi Client by Ruby.}
+  spec.summary       = %q{Joyent CloudAPI client by Ruby.}
+  spec.description   = %q{Joyent CloudAPI client and command line interface.}
   spec.homepage      = "http://github.com/ogom/ruby-smartdc"
   spec.license       = "MIT"
 
@@ -18,9 +18,9 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
+  spec.add_dependency 'cassette-rack'
   spec.add_dependency 'thor'
   spec.add_dependency 'terminal-table'
-  spec.add_dependency 'faraday'
 
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'

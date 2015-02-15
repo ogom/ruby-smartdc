@@ -1,21 +1,11 @@
-module Smartdc
-  module Api
-    class Packages
-      attr_reader :request
+module Smartdc::Api
+  module Packages
+    def packages(params={})
+      get 'my/packages', params
+    end
 
-      def initialize(options)
-        @request = Smartdc::Request.new(options)
-      end
-
-      def read(id)
-        raise ArgumentError unless id
-        request.get('my/packages/' + id.to_s)
-      end
-
-      def all(query={})
-        request.get('my/packages', query)
-      end
+    def package(id)
+      get 'my/packages/' + id.to_s
     end
   end
 end
-

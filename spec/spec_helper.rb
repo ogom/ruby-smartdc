@@ -1,9 +1,26 @@
-$LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
-$LOAD_PATH.unshift(File.dirname(__FILE__))
-require 'rspec'
-require 'cli_helper'
+require 'smartdc'
+require 'smartdc/cli'
+require 'vcr'
 
-def fixture(name)
-  path = File.join(File.dirname(__FILE__), './fixtures', "/#{name}.json")
-  JSON.parse(File.read(path))
+VCR.configure do |config|
+  config.hook_into :webmock
+  config.cassette_library_dir = 'spec/cassettes'
+  config.allow_http_connections_when_no_cassette = true
+  config.default_cassette_options = { record: ENV.fetch('VCR'){ :once }.to_sym }
+  config.configure_rspec_metadata!
+
+  config.filter_sensitive_data("<USERNAME>") { Smartdc.config.username }
+
+  config.before_record do |interaction|
+    interaction.request.headers['Authorization'] = ''
+    interaction.request.headers['Date'] = ''
+
+    interaction.response.headers['Date'] = ''
+    interaction.response.headers['Request-Id'] = ''
+    interaction.response.headers['X-Request-Id'] = ''
+    interaction.response.headers['Response-Time'] = ''
+    interaction.response.headers['X-Response-Time'] = ''
+
+    interaction.response.body.force_encoding 'UTF-8'
+  end
 end

@@ -1,0 +1,65 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://us-east-1.api.joyentcloud.com/my/keys
+    body:
+      encoding: UTF-8
+      string: '{"name":"example","key":"ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDFgraK6s3SXvn8cIFkCYOlOnWrYI0LwI+FPvtmp6oRRJL4aXbGu0LLId2mXqwZgWNGC5za3q0g+pbtpYyJKms/eXhvQGhOGMFCrONjc23hbUkSGRezBZuld2uYgjvm4egMTEhb1VvWjN+FXMXlV262FR5pqvw7k54+uKH6vjv893qEBQ4cDaLSrYPmbnsjWOthhGYYT5hZPOj7e5/F02VuNzi9BbPEBVEzrESJo6177vWX2g0g2oZoG4SZwH1S+AaRTXL9vPvVJSxkLdZ5Pp5QUren7L21soczP7fk0nqe7DPzqLnnaoxd5TAF5Mp+OdmyPTjwTFlKRTOxeS2N3Cot\n"}'
+    headers:
+      Date: ''
+      Authorization: ''
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      X-Api-Version:
+      - "~7.0"
+      User-Agent:
+      - Faraday v0.9.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      X-Api-Version:
+      - 7.2.0
+      Server:
+      - Joyent SmartDataCenter 7.2.0
+      Request-Id: ''
+      Content-Type:
+      - application/json
+      Access-Control-Expose-Headers:
+      - Api-Version, Request-Id, Response-Time
+      Strict-Transport-Security:
+      - max-age=6570000
+      Date: ''
+      X-Request-Id: ''
+      Location:
+      - "/<USERNAME>/keys/4c%3A02%3Af3%3Ab2%3A09%3Afb%3A29%3Add%3A41%3A97%3Ada%3A80%3Abc%3A69%3A6c%3Af8"
+      Content-Md5:
+      - vrBhUJwAFSsybKZjRZ29/A==
+      Access-Control-Allow-Origin:
+      - "*"
+      Response-Time: ''
+      X-Response-Time: ''
+      Connection:
+      - Keep-Alive
+      Access-Control-Allow-Headers:
+      - Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version,
+        Response-Time
+      Access-Control-Allow-Methods:
+      - POST, GET, HEAD
+      Api-Version:
+      - 7.2.0
+      Content-Length:
+      - '471'
+    body:
+      encoding: UTF-8
+      string: '{"name":"example","fingerprint":"4c:02:f3:b2:09:fb:29:dd:41:97:da:80:bc:69:6c:f8","key":"ssh-rsa
+        AAAAB3NzaC1yc2EAAAADAQABAAABAQDFgraK6s3SXvn8cIFkCYOlOnWrYI0LwI+FPvtmp6oRRJL4aXbGu0LLId2mXqwZgWNGC5za3q0g+pbtpYyJKms/eXhvQGhOGMFCrONjc23hbUkSGRezBZuld2uYgjvm4egMTEhb1VvWjN+FXMXlV262FR5pqvw7k54+uKH6vjv893qEBQ4cDaLSrYPmbnsjWOthhGYYT5hZPOj7e5/F02VuNzi9BbPEBVEzrESJo6177vWX2g0g2oZoG4SZwH1S+AaRTXL9vPvVJSxkLdZ5Pp5QUren7L21soczP7fk0nqe7DPzqLnnaoxd5TAF5Mp+OdmyPTjwTFlKRTOxeS2N3Cot"}'
+    http_version:
+  recorded_at: Sun, 15 Feb 2015 08:04:38 GMT
+recorded_with: VCR 2.9.3
