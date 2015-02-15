@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Smartdc::CliConfigure do
-  let(:path) { File.join(Smartdc.root, './spec/fixtures/config/.sdccfg') }
+  let(:path) { File.join(Smartdc.root, 'spec/fixtures/config/.sdccfg') }
   let(:configure) { Smartdc::CliConfigure.new(path) }
   let(:options) do
     {
@@ -14,6 +14,7 @@ describe Smartdc::CliConfigure do
 
   describe "#path" do
     it "returns a path" do
+      p path
       expect(configure.path).to eq path
     end
   end
