@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Smartdc::CliConfigure do
-  let(:path) { './spec/fixtures/config/.sdccfg' }
+  let(:path) { File.join(Smartdc.root, './spec/fixtures/config/.sdccfg') }
   let(:configure) { Smartdc::CliConfigure.new(path) }
   let(:options) do
     {
