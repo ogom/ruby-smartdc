@@ -13,12 +13,13 @@ require 'cassette-rack'
 namespace :vcr do
   desc "Draw cassettes of VCR"
   task :draw do
+    root_path = File.dirname(__FILE__)
     CassetteRack.configure do |config|
-      config.content_layout =  File.join(File.dirname(__FILE__), 'doc/caracal/content.md.liquid')
+      config.content_layout =  File.join(root_path, 'doc/caracal/content.md.liquid')
     end
 
-    path = ENV['path'] ||= File.join(File.dirname(__FILE__), 'doc/cassettes')
-    CassetteRack::Cli.draw(path)
-    puts "drawing cassettes to #{path}"
+    dest_path = ENV['path'] ||= File.join(root_path, 'doc/cassettes')
+    CassetteRack::Cli.draw(dest_path)
+    puts "drawing cassettes to #{dest_path}"
   end
 end
