@@ -1,4 +1,5 @@
 .bundle
+doc/cassettes
 pkg
 tmp
 .rspec
