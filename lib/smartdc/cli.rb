@@ -51,6 +51,7 @@ module Smartdc
           config.username = sdccfg[:username] if sdccfg.key?(:username)
           config.use_key = sdccfg[:use_key] if sdccfg.key?(:use_key)
           config.rsa_path = sdccfg[:rsa_path] if sdccfg.key?(:rsa_path)
+          config.ssl_verify = sdccfg[:ssl_verify].to_s =~ /false|0/ ? false : true
           config.middleware = Faraday::RackBuilder.new do |builder|
             builder.adapter Faraday.default_adapter
             #builder.use CassetteRack::Response::RaiseError

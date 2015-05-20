@@ -56,6 +56,7 @@ __EOS__
       options = option(options, :Version, :version, '~7.0')
       options = option(options, :Username, :username, ENV['USER'])
       options = option(options, :Fingerprint, :use_key, 'none')
+      options = option(options, :SSLVerify, :ssl_verify, true)
 
       puts
       puts "New settings!"
@@ -63,6 +64,7 @@ __EOS__
       puts "Version: #{options[:version]}"
       puts "Username: #{options[:username]}"
       puts "Fingerprint: #{options[:use_key]}"
+      puts "SSLVerify: #{options[:ssl_verify]}"
       puts
 
       self.write options
