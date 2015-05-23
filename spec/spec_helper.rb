@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 require 'smartdc'
 require 'smartdc/cli'
 require 'vcr'

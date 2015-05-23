@@ -1,4 +1,5 @@
 .bundle
+coverage
 doc/cassettes
 pkg
 tmp
